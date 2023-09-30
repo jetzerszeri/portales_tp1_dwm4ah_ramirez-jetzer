@@ -175,7 +175,7 @@ main{
     color: var(--color-white);
     padding: 30px;
     text-align: center;
-    height: 93vh;
+    min-height: 93vh;
     display: flex;
     align-items: center;
     /* max-width: 1300px;
@@ -235,8 +235,119 @@ main{
     z-index: 1;
 }
 
+/* sección de servicios en home */
+.homeservices{
+    margin: 50px auto;
+    padding: 0 30px;
+    color: var(--color-darkgreen);
+}
 
+.homeservices > div{
+    max-width: 1000px;
+    margin: auto;
+}
 
+.homeservices h2{
+    font-size: 0.9em;
+    font-weight: 400;
+    margin: 0;
+}
+
+.homeservices h2 + p{
+    font-weight: 600;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.homeservices > div > div {
+    padding: 30px 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 50px;
+}
+
+.homeservices .card{
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    object-fit: cover;
+    margin: auto;
+    transition: all 0.3s ease;
+}
+
+.homeservices .card img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.homeservices .card  p{
+    position: absolute;
+    bottom: -15px;
+    left: -15px;
+    /* width: 100%; */
+    padding: 16px;
+    background-color: var(--color-red);
+    color: var(--color-white);
+    font-size: 0.9em;
+    /* font-weight: 400; */
+    margin: 0;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.homeservices .card:hover p{
+    transform: translateY(10px);
+}
+
+.homeservices .card a{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-yellow);
+    z-index: 1  ;
+    color: var(--color-darkgreen);
+    text-align: center;
+    vertical-align: middle;
+    line-height: 350px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.homeservices .card:hover a{
+    opacity: 1;
+}
+
+@media (min-width: 650px){
+    .homeservices > div > div {
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        max-width: 650px;
+        margin: auto;
+    }
+
+    .homeservices .card:nth-of-type(2){
+        transform: translateY(150px);
+    }
+
+    .homeservices .card:nth-of-type(2) p{
+        bottom: auto;
+        top: -15px;
+    }
+
+    .homeservices .card:nth-of-type(3) p{
+        left: auto;
+        right : -15px;
+    }
+
+    .homeservices .card:nth-of-type(3){
+        transform: translateX(40px);
+    }
+
+}
 
 @media (min-width: 850px){
     main{ 
@@ -361,6 +472,8 @@ main{
 
     .heroHome{
         text-align: left;
+        min-height: fit-content;
+        padding-bottom: 80px;
         max-height: 800px;
     }
 
@@ -398,5 +511,19 @@ main{
 
     .heroHome .btn{
         font-size: 1em;
+    }
+
+    .homeservices > div > div {
+        grid-template-columns: 1fr 1fr 1fr;
+        max-width: 800px;
+        /* width: 80%; */
+    }
+    .homeservices .card:nth-of-type(2){
+        /* transform: translateY(150px);
+        transform: translateX(50px); */
+    }
+
+    .homeservices .card:nth-of-type(3){
+        transform: translateX(0px);
     }
 }
