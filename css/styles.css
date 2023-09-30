@@ -10,6 +10,7 @@
     --color-red: #FF4439;
     --color-yellow: #FEC85B;
     --color-darkgray: #171A1E;
+    --color-white: #FFFFFF;
 }
 
 body{
@@ -19,4 +20,254 @@ body{
     margin: 0;
     font-size: 18px;
     color: var(--color-darkgray);
+}
+
+a {
+    text-decoration: none;
+}
+  
+li {
+    list-style: none;
+}
+
+ul{
+    padding: 0;
+}
+
+/* nabvar */
+nav {
+    width: 100%;
+    height: 58px;
+    background-color: var(--color-darkgreen);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    /* color: var(--color-white); */
+    box-shadow: 0px 1px 15px -2px rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* height: 56px; */
+    /* padding-top: 6px;
+    padding-bottom: 12px; */
+    background-color: var(--color-darkgreen);
+    /* box-shadow: 0px 1px 15px -2px rgba(0, 0, 0, 0.4); */
+}
+
+.navbar > div:first-of-type{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 12px 10px;
+    /* background-color: var(--color-neutral); */
+}
+
+.navbar-links{
+    height: 100%;
+    display: none;
+    text-align: center;
+}
+
+.navbar-links ul{
+    margin: 0;
+}
+.navbar-links ul li{
+    text-align: center;
+}
+  
+.navbar-links li a {
+    display: block;
+    color: var(--color-white);
+    padding: 1rem;
+    /* background-color: var(--color-neutral); */
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.navbar-links li:hover a {
+    background-color: var(--color-yellow);
+    color: var(--color-darkgreen);
+}
+
+.toggle-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+}
+
+.toggle-button .bar {
+    height: 4px;
+    width: 100%;
+    background-color: var(--color-yellow);
+    border-radius: 10px;
+}
+
+.navbar-links.active{
+    display: block;
+}
+
+.navbarlogo {
+    /*  logo */
+    width: 100px;
+    height: 34px;
+    background-image: url(../img/logo.webp);
+    font-size: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.btn, button{
+    padding: 10px 25px;
+    border: 1.5px solid var(--color-yellow);
+    border-radius: 57px;
+    background-color: transparent;
+    font-size: 0.8em;
+    color: var(--color-yellow);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: inline-block;
+    /* position: relative; */
+    white-space: nowrap;
+  min-width: min-content;
+}
+
+.btn:hover, button:hover{
+    background-color: var(--color-yellow);
+    color: var(--color-darkgreen);
+}
+
+.navbar-links .btn{
+    margin: 20px auto;
+}
+
+@media (min-width: 850px){
+    main{ 
+        padding: 20px 50px;
+        max-width: 1300px;
+        width: 100%;
+        margin: auto;
+    }
+
+    nav {
+        height: 56px;
+      }
+
+    .navbar {
+    flex-direction: row;
+    align-items: center;
+    height: 56px;
+    justify-content: space-between;
+    max-width: 1300px;
+    width: 100%;
+    padding: 0 30px;
+    margin: auto;
+    }
+
+    nav {
+      height: 76px;
+      padding-top: 10px;
+    }
+
+    .navbar {
+      flex-direction: row;
+      align-items: center;
+      height: 56px;
+      max-width: 1300px;
+      width: 100%;
+      padding: 10px 30px;
+      margin: auto;
+    }
+
+    .toggle-button {
+    display: none;
+    }
+    
+    .navbarlogo{
+        margin: 0;
+    } 
+
+    .navbar > div:first-of-type, .navbar-links div{
+        width: 180px;
+        text-align: right;
+    }
+
+    .navbar-links {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1;
+    }
+
+    .navbar-links ul{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+    }
+
+    .navbar-links ul .active{
+        color: var(--color-yellow);
+    }
+
+    .navbar-links ul li{
+        text-align: center; 
+    }
+
+    .navbar-links ul li a {
+        padding: 0.1em 0.9rem;
+        position: relative;
+        display: inline-block;
+
+    }
+
+    .navbar-links-admin ul li a {
+        padding: 0.1em 0.9rem;
+        position: relative;
+        display: inline-block;
+        color: var(--color-neutral);
+        
+    }
+
+    .navbar-links li:hover a{
+        background-color: transparent;
+        color: var(--color-yellow);
+    }
+    .navbar-links.active{
+        display: flex;
+    }
+    
+    .navbar-links ul li a::before{
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-yellow);
+        border-radius: 4px;
+        scale: 0 1;
+        transform-origin: right;
+        transition: scale 0.25s;
+    }
+    
+    .navbar-links ul li a:hover::before{
+        scale: 1;
+        transform-origin: left;
+    }
+
+    .btn, button{
+        padding: 5px 15px;
+        margin: 0;
+    }
+
 }
