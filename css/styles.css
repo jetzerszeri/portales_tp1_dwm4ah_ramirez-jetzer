@@ -153,23 +153,31 @@ nav {
     border: 1.5px solid transparent;
 }
 
+.btn.secundary-green{
+    background-color: transparent;
+    color: var(--color-darkgreen);
+    border: 1.5px solid var(--color-darkgreen);
+}
+.btn.secundary-green:hover{
+    background-color: var(--color-darkgreen);
+    color: var(--color-white);
+}
+
 .btn.primary-yellow:hover{
     background-color: var(--color-red);
     color: var(--color-white);
-    transform: translateX(5px)
     /* border: 1.5px solid var(--color-yellow); */
 }
 
 .btn.primary-green:hover{
     background-color: var(--color-yellow);
-    /* color: var(--color-white); */
-    transform: translateX(5px);
     border: 1.5px solid var(--color-darkgreen);
 }
 
 .btn:hover, button:hover{
     background-color: var(--color-yellow);
     color: var(--color-darkgreen);
+    transform: translateX(5px)
 }
 
 .navbar-links .btn{
@@ -399,6 +407,58 @@ footer p{
 }
 
 
+/* ----- servicios ----- */
+.servicesheader{
+    margin: 0;
+    background-color: var(--color-neutral);
+}
+.servicesheader > div:nth-of-type(1){
+    padding: 30px;
+    max-width: 1140px;
+    margin: auto;
+}
+
+.servicesheader > div:nth-of-type(1) p{
+    max-width: 700px;
+}
+
+.servicesheader h1{
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-darkgreen);
+    line-height: 1.2em;
+    max-width: 650px;
+}
+
+.servicesheader > div:nth-of-type(2){
+    background-color: var(--color-white);
+    font-size: 0.9em;
+    /* margin: 30px auto; */
+    margin: auto;
+    padding: 30px 0 15px;
+}
+
+.servicesheader > div:nth-of-type(2) ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1140px;
+}
+
+.servicesheader + section{
+    background-color: var(--color-white);
+    margin-top: 0;
+    padding: 0;
+}
+
+.servicescontainer{
+    background-color: var(--color-white);
+}
 
 
 
@@ -444,6 +504,27 @@ footer p{
         content: "|";
         margin: 0 10px 0 20px;
     }
+
+    .servicesheader > div:nth-of-type(1){
+        padding: 60px 40px 40px 40px;
+        
+    }
+
+    .servicesheader h1{
+        font-size: 2.2em;
+        font-weight: 700;
+        margin: 0;
+        color: var(--color-darkgreen);
+        line-height: 1.2em;
+        max-width: 600px;
+    }
+
+    .servicesheader > div:nth-of-type(2) ul{
+        justify-content: end;
+        padding-right: 40px;
+    }
+    
+
 
 }
 
