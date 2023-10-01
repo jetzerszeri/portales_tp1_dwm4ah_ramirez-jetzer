@@ -149,7 +149,8 @@ nav {
 .btn.primary-green{
     background-color: var(--color-darkgreen);
     color: var(--color-white);
-    border: none;
+    /* border: none; */
+    border: 1.5px solid transparent;
 }
 
 .btn.primary-yellow:hover{
@@ -349,6 +350,8 @@ main{
     padding: 20px;
     line-height: 1.8em;
     transform: translateY(-100px);
+    max-width: 800px;
+    margin: auto;
 }
 
 /* .homeservices + section div h2{
@@ -421,6 +424,24 @@ footer p{
 
     .homeservices .card:nth-of-type(3){
         transform: translateX(40px);
+    }
+
+    footer{
+        display: flex;
+        max-width: 1300px;
+        /* padding: 0px 100px; */
+        margin: auto;
+        justify-content: space-between;
+    }
+
+    footer > div{
+        display: flex;
+        align-items: center;
+    }
+
+    footer > div p:nth-of-type(1)::after{
+        content: "|";
+        margin: 0 10px 0 20px;
     }
 
 }
@@ -592,14 +613,19 @@ footer p{
     .homeservices > div > div {
         grid-template-columns: 1fr 1fr 1fr;
         max-width: 800px;
-        /* width: 80%; */
-    }
-    .homeservices .card:nth-of-type(2){
-        /* transform: translateY(150px);
-        transform: translateX(50px); */
     }
 
     .homeservices .card:nth-of-type(3){
         transform: translateX(0px);
     }
+
+    .homeservices + section{
+        margin-top: 300px;
+        height: 150px;
+    }
+
+    footer{
+        padding: 50px 100px;
+    }
+
 }
