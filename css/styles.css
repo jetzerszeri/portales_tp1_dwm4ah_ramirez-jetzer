@@ -186,11 +186,13 @@ main{
 .heroHome{
     background-color: var(--color-darkgreen);
     color: var(--color-white);
-    padding: 30px;
+    /* padding: 30px; */
     text-align: center;
-    min-height: 93vh;
+    /* min-height: 93vh; */
+    height: fit-content;
     display: flex;
     align-items: center;
+    padding: 80px 30px;
     /* max-width: 1300px;
     margin: auto; */
 }
@@ -426,15 +428,14 @@ footer p{
         transform: translateX(40px);
     }
 
-    footer{
+    footer > div{
         display: flex;
         max-width: 1300px;
-        /* padding: 0px 100px; */
         margin: auto;
         justify-content: space-between;
     }
 
-    footer > div{
+    footer > div > div{
         display: flex;
         align-items: center;
     }
@@ -570,7 +571,7 @@ footer p{
     .heroHome{
         text-align: left;
         min-height: fit-content;
-        padding-bottom: 80px;
+        padding: 30px 30px 80px 30px;
         max-height: 800px;
     }
 
@@ -624,7 +625,7 @@ footer p{
         height: 150px;
     }
 
-    footer{
+    footer {
         padding: 50px 100px;
     }
 
