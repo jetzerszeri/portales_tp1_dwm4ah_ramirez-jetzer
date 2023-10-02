@@ -551,7 +551,33 @@ footer p{
     font-weight: 600;
 }
 
+.breadcrumb ol{
+    padding: 20px;
+    list-style: none;
+    color: var(--color-white);
+    font-size: 0.8em;
+    font-weight: 0.8em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
 
+.breadcrumb ol li + li:before {
+    content: ">";
+    margin-right: 5px; 
+  }
+
+  .breadcrumb ol li a{
+    color: var(--color-white);
+    transition: all 0.3s ease;
+  }
+
+  .breadcrumb ol li a:hover{
+    color: var(--color-yellow);
+    text-decoration: underline;
+  }
+
+  
 @media (min-width: 650px){
 
     .homeservices > div > div {
