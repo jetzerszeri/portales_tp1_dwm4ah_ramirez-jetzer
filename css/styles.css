@@ -14,7 +14,7 @@
 }
 
 body{
-    background-color: var(--color-neutral);
+    background-color: var(--color-darkgreen);
     font-family: 'Poppins', sans-serif ;
     padding: 0;
     margin: 0;
@@ -190,7 +190,9 @@ main{
 }
 
 /* ------home----- */
-
+.homecontainer{
+    background-color: var(--color-neutral);
+}
 .heroHome{
     background-color: var(--color-darkgreen);
     color: var(--color-white);
