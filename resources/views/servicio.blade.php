@@ -5,14 +5,14 @@
 
 <nav class="breadcrumb">
     <ol>
-        <li><a href="services.html">Servicios</a></li>
+        <li><a href="services">Servicios</a></li>
         <li aria-current="page">Limpieza post remodelación</li>
     </ol>
 </nav>
 
 <section class="servicesection">
     <div>
-        <h1>Limpieza post remodelación /Construcción</h1>
+        <h1>Limpieza post remodelación / Construcción</h1>
         <img src="img/servicio1.webp" alt="escalera y herramientas de pintura en una habitación en construcción">
         <a href="services.html" class="btn primary-green"><</a>
     </div>

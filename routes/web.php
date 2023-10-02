@@ -24,3 +24,7 @@ Route::get('/services', function () {
 Route::get('/servicio', function () {
     return view('servicio');
 });
+
+Route::get('/login', function () {
+    return view('login');
+});

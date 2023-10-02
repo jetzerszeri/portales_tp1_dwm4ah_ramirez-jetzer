@@ -19,7 +19,7 @@
                     <!-- <li><a href="#" class="">Dashboard</a></li> -->
                 </ul>
                 <div>
-                    <a href="#" class="btn">Iniciar sesión</a>
+                    <a href="/login" class="btn">Iniciar sesión</a>
                 </div>
             </div>
         </div>

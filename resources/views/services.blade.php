@@ -12,9 +12,9 @@
 
         <div>
             <ul>
-                <li><a href="" class="btn secundary-green">Remodelación</a></li>
-                <li><a href="" class="btn secundary-green">Mudanza</a></li>
-                <li><a href="" class="btn secundary-green">Real State</a></li>
+                <li><a href="/services?cat=1" class="btn secundary-green">Remodelación</a></li>
+                <li><a href="/services?cat=2" class="btn secundary-green">Mudanza</a></li>
+                <li><a href="/services?cat=3" class="btn secundary-green">Real State</a></li>
             </ul>
         </div>
     </header>
