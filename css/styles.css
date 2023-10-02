@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
 
 * {
     box-sizing: border-box;
@@ -460,6 +460,88 @@ footer p{
     background-color: var(--color-white);
 }
 
+/* ul de los servicios */
+.servicescontainer section ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 0 30px;
+    width: 100%;
+    max-width: 1140px;
+    margin: auto auto 80px auto;
+}
+.servicescontainer section ul li{
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.servicescontainer section ul li > div{
+    background-color: var(--color-yellow);
+    padding: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+    /* z-index: 1; */
+}
+
+.servicescontainer section ul li:hover{
+    transform: translate(-5px, -5px);
+}
+
+
+.servicescontainer section ul li:after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: var(--color-darkgreen);
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+.servicescontainer section ul li:hover:after {
+    top: 10px;
+    left: 10px;
+    right: -10px;
+    bottom: -10px;
+}
+
+
+
+/* div de la imagen del servicio */
+.servicescontainer section ul li > div > div:nth-of-type(1){
+    position: relative;
+    width: 100%;
+    height: 150px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+ .servicescontainer section ul li > div  > div:nth-of-type(1) img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.servicescontainer section ul li > div > div:nth-of-type(2) div{
+    display: flex;
+    flex-direction: column;
+}
+
+.servicescontainer section ul li > div > div:nth-of-type(2) div p{
+    order: 1;
+    margin-bottom: 0;
+    color: var(--color-darkgreen);
+    font-size: 0.8em;
+    font-weight: 400;
+}
+.servicescontainer section ul li > div > div:nth-of-type(2) div h2{
+    order: 2;
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+    line-height: 1.1em;
+    font-weight: 600;
+} */
 
 
 @media (min-width: 650px){
