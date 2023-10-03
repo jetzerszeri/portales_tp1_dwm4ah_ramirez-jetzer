@@ -52,11 +52,17 @@ Route::get('/admin/services', function () {
     ]); //como segundo parametro puedo mandar datos a la vista
 });
 
+Route::get('/admin/services/add', function () {
+    return view('adminservicesform', [
+        'services' => Service::all()
+    ]); //como segundo parametro puedo mandar datos a la vista
+});
+
 Route::get('/admin/services/{id}/edit', function ( $id ) {
     $service = Service::find($id); 
 
     // return $service;
-    return view('adminservicesedit', [
+    return view('adminservicesform', [
         'service' => $service
     ]);
 });

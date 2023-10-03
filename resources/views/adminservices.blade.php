@@ -12,8 +12,8 @@
     <h2>Servicios</h2>
 
     <ul class="usersOptions">
-        <li><a href="" class="btn">Todos los servicios</a></li>
-        <li><a href="" class="btn">Agregar un servicio</a></li>
+        <li><a href="" class="btn active">Todos los servicios</a></li>
+        <li><a href="/admin/services/add" class="btn">Agregar un servicio</a></li>
     </ul>
 
     <div class="tablecontainer">
