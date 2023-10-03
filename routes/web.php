@@ -48,7 +48,8 @@ Route::get('/admin/services', function () {
     // Service::all(); //metdodo para leer todos los servicios de la base de datos
 
     return view('adminservices', [
-        'services' => Service::all()
+        'services' => Service::all(),
+        'h2' => 'Servicios',
     ]); //como segundo parametro puedo mandar datos a la vista
 });
 
