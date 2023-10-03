@@ -50,10 +50,12 @@ Route::get('/admin/services', function () {
 Route::post('/admin/services', function ( Request $request ) {
     // dd(request()->all());
     // ddd($request);
-    Service::create([
-        'name' => request()->input('name'),
-        'category' => request()->input('category'),
-        'description' => request()->input('description'),
-        'img' => request()->input('img'),
-    ]);
+
+    // dd(request()->merge([
+    //     'ip_address' => request()->ip(),
+    // ])->toArray());
+
+    $data = request()->all();
+    Service::create($data);
+    return redirect('/admin/services');
 });
