@@ -32,3 +32,7 @@ Route::get('/login', function () {
 Route::get('/admin', function () {
     return view('dashboard');
 });
+
+Route::get('/admin/users', function () {
+    return view('users');
+});

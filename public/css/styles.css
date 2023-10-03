@@ -450,7 +450,7 @@ footer p{
     padding: 30px 0 15px;
 }
 
-.servicesheader > div:nth-of-type(2) ul{
+.servicesheader > div:nth-of-type(2) ul, .usersOptions{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -459,6 +459,10 @@ footer p{
     margin: 0 auto;
     width: 100%;
     max-width: 1140px;
+}
+.servicesheader > div:nth-of-type(2) ul, .usersOptions .btn{
+    padding: 5px 15px;
+    font-size: 0.8em;
 }
 
 .servicesheader + section{
@@ -754,10 +758,10 @@ padding-left: 10px;
     margin-bottom: 0;
 }
 
-.adminmain h1 + p{
+.adminmain h1 + p, .adminmain h1 + h2{
     font-size: 2em;
     font-weight: 600;
-    margin: 0;
+    margin: 0 0 20px 0;
     line-height: 1.2em;
 }
 
@@ -814,6 +818,64 @@ padding-left: 10px;
     left: 10px;
     right: -10px;
     bottom: -10px;
+}
+
+/* ----users---- */
+
+table{
+    background-color: var(--color-white);
+    color: var(--color-darkgray);
+    width: 100%;
+    margin-top: 10px;
+    /* padding: 10px; */
+    border-collapse: collapse;
+}
+
+/* table th{
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid var(--color-darkgray);
+    padding: 8px 10px;
+} */
+table th{
+    display: none;
+}
+
+/* table td{
+    padding: 8px 10px;
+} */
+
+table td{
+    padding: 2px;
+    display: block;
+    text-align: center;
+}
+
+table td:nth-of-type(1){
+    padding-top: 20px;
+}
+
+table td:last-of-type{
+    padding: 10px 0 20px 0;
+}
+
+table tr:nth-of-type(2n){
+    background-color: #eae8e88b;
+}
+
+table tr:hover{
+    background-color: #fec85b32;
+}
+
+.tablecontainer{
+    max-width: 1000px;
+    overflow-x: scroll;
+}
+
+.tablecontainer .btn{
+    padding: 5px 10px;
+    font-size: 0.7em;
+    margin-right: 10px;
 }
   
 @media (min-width: 650px){
@@ -901,6 +963,32 @@ padding-left: 10px;
     .servicesection > div:nth-of-type(2){
         padding: 35px;
         /* max-width: 400px; */
+    }
+
+    .adminmain{
+        padding: 30px 40px;
+    }
+
+    .usersOptions{
+        justify-content: end;
+    }
+
+    table th{
+        display: table-cell;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 1px solid var(--color-darkgray);
+        padding: 10px;
+    }
+
+    table td, table td:nth-of-type(1), table td:last-of-type{
+        padding: 10px;
+        display: table-cell;
+        text-align: left;
+    }
+
+    table td:last-of-type{
+        text-align: center;
     }
 
 
