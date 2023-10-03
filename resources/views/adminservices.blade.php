@@ -66,7 +66,7 @@
         @csrf
         <div>
             <label for="name">Nombre del servicio</label>
-            <input type="text" placeholder="Ingresa el nombre del servicio" name="name">
+            <input type="text" placeholder="Ingresa el nombre del servicio" name="name" value="Servicio">
         </div>
         <div>
             <label for="category">Categoría</label>

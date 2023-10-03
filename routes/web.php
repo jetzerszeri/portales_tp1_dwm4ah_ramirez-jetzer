@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
+use App\Models\Service;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,5 +48,12 @@ Route::get('/admin/services', function () {
 });
 
 Route::post('/admin/services', function ( Request $request ) {
-    ddd($request);
+    // dd(request()->all());
+    // ddd($request);
+    Service::create([
+        'name' => request()->input('name'),
+        'category' => request()->input('category'),
+        'description' => request()->input('description'),
+        'img' => request()->input('img'),
+    ]);
 });
