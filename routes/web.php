@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use App\Models\Service;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,12 +49,15 @@ Route::get('/admin/services', function () {
 });
 
 Route::post('/admin/services', function ( Request $request ) {
-    // dd(request()->all());
-    // ddd($request);
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|alpha|min:3|max:100',
+        'category' => 'required|in:1,2,3',
+        'description' => 'required|min:10|max:1000',
+        'img' => 'required',
+    ]);
 
-    // dd(request()->merge([
-    //     'ip_address' => request()->ip(),
-    // ])->toArray());
+    dd($validator->validated());
+    dd($validator->errors());
 
     $data = request()->all();
     Service::create($data);
