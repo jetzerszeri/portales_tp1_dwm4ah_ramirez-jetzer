@@ -697,7 +697,7 @@ padding-left: 10px;
     color: var(--color-darkgray);
 }
 
-.estimateform input, .estimateform select, .estimateform textarea, .loginmain form input, .adminmain form input{
+.estimateform input, .estimateform select, .estimateform textarea, .loginmain form input, .adminmain form input, .loginmain form select, .adminmain form select, .loginmain form textarea, .adminmain form textarea{
     display: block;
     width: 100%;
     padding: 10px;
@@ -705,8 +705,8 @@ padding-left: 10px;
     border: solid 1px #c7c7c7;
 }
 
-.estimateform textarea{
-    height: 100px;
+.estimateform textarea, .adminmain form textarea{
+    height: 150px;
     resize: none;
 }
 

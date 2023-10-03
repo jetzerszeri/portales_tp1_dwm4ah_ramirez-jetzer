@@ -4,16 +4,16 @@
     <nav class="breadcrumb">
             <ol>
                 <li><a href="/admin">Dashboard</a></li>
-                <li aria-current="page">Usuarios</li>
+                <li aria-current="page">Servicios</li>
             </ol>
     </nav>
 
     <h1>Panel de administrador</h1>
-    <h2>Usuarios</h2>
+    <h2>Servicios</h2>
 
     <ul class="usersOptions">
-        <li><a href="" class="btn">Todos los usuarios</a></li>
-        <li><a href="" class="btn">Agregar un usuario</a></li>
+        <li><a href="" class="btn">Todos los servicios</a></li>
+        <li><a href="" class="btn">Agregar un servicio</a></li>
     </ul>
 
     <!-- <div class="tablecontainer">
@@ -65,21 +65,25 @@
     <form action="" method="post">
         @csrf
         <div>
-            <label for="name">Nombre</label>
-            <input type="text" placeholder="Ingresa el nombre" name="name">
+            <label for="name">Nombre del servicio</label>
+            <input type="text" placeholder="Ingresa el nombre del servicio" name="name">
         </div>
         <div>
-            <label for="lastname">Apellido</label>
-            <input type="text" placeholder="Ingresa el apellido" name="lastname">
+            <label for="category">Categoría</label>
+            <select name="category">
+                <option value="1">Remodelacion</option>
+                <option value="2">Move in/Move out</option>
+                <option value="3">Real State</option>
+            </select>
         </div>
         <div>
-            <label for="email">Email</label>
-            <input type="email" placeholder="ejemplo@ejemplo.com" name="email">
+            <label for="description">Descripción</label>
+            <textarea name="description" cols="30" rows="10"></textarea>
         </div>
 
         <div>
-            <label for="password">Contraseña</label>
-            <input type="password" placeholder="Ingresa la contraseña" name="password">
+            <label for="img">Imagen</label>
+            <input type="text" placeholder="Ingresa el url de la imagen" name="img">
         </div>
 
         <div>

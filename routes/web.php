@@ -38,6 +38,14 @@ Route::get('/admin/users', function () {
     return view('users');
 });
 
-Route::post('/admin/users', function () {
-    return "recibido";
+Route::post('/admin/users', function ( Request $request ) {
+    ddd($request);
+});
+
+Route::get('/admin/services', function () {
+    return view('adminservices');
+});
+
+Route::post('/admin/services', function ( Request $request ) {
+    ddd($request);
 });
