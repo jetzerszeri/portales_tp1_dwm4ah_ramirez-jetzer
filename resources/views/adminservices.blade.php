@@ -16,19 +16,35 @@
         <li><a href="" class="btn">Agregar un servicio</a></li>
     </ul>
 
-    <!-- <div class="tablecontainer">
+    <div class="tablecontainer">
         <table>
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Correo electrónico</th>
+                    <th>Categoria</th>
+                    <th>Descripción</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
+            @foreach ($services as $service)
                 <tr>
+                    <td>{{ $service->name}}</td>
+                    <td>{{ $service->category}}</td>
+                    <td>{{ $service->description}}</td>
+                    <td>{{ $service->img}}</td>
+                    <td>
+                        <a href="/admin/services/{{ $service->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="" class="btn secundary-green"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+            @endforeach
+                <!-- <tr>
                     <td>Juan Lopez</td>
-                    <td>ejemplo@ejemplo.com</td>
+                    <td>Remodelación</td>
+                    <td>Esta es la descripcion de ejemlo, Esta es la descripcion de ejemlo Esta es la descripcion de ejemlo</td>
+                    <td>servicio1.jpg</td>
                     <td>
                         <a href="" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="" class="btn secundary-green"><i class="fa-solid fa-trash"></i></a>
@@ -36,7 +52,9 @@
                 </tr>
                 <tr>
                     <td>Karla Gomez</td>
-                    <td>ejemplo@ejemplo.com</td>
+                    <td>Remodelación</td>
+                    <td>Esta es la descripcion de ejemlo, Esta es la descripcion de ejemlo Esta es la descripcion de ejemlo</td>
+                    <td>servicio1.jpg</td>
                     <td>
                         <a href="" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="" class="btn secundary-green"><i class="fa-solid fa-trash"></i></a>
@@ -44,7 +62,9 @@
                 </tr>
                 <tr>
                     <td>Kev Johnson</td>
-                    <td>ejemplo@ejemplo.com</td>
+                    <td>Remodelación</td>
+                    <td>Esta es la descripcion de ejemlo, Esta es la descripcion de ejemlo Esta es la descripcion de ejemlo</td>
+                    <td>servicio1.jpg</td>
                     <td>
                         <a href="" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="" class="btn secundary-green"><i class="fa-solid fa-trash"></i></a>
@@ -52,20 +72,21 @@
                 </tr>
                 <tr>
                     <td>Carlos Perez</td>
-                    <td>ejemplo@ejemplo.com</td>
+                    <td>Remodelación</td>
+                    <td>Esta es la descripcion de ejemlo, Esta es la descripcion de ejemlo Esta es la descripcion de ejemlo</td>
+                    <td>servicio1.jpg</td>
                     <td>
                         <a href="" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="" class="btn secundary-green"><i class="fa-solid fa-trash"></i></a>
                     </td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
-    </div> -->
+    </div>
 
-    {{ $errors->first('name') }}
-    {{ $errors->first('category') }}
-    {{ $errors->first('description') }}
-    {{ $errors->first('img') }}
+    @foreach ($services as $service)
+        <p>Id del servicio: {{ $service->id}}</p>
+    @endforeach
 
     <form action="" method="post">
         @csrf

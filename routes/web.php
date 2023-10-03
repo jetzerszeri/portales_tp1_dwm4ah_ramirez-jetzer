@@ -45,8 +45,22 @@ Route::post('/admin/users', function ( Request $request ) {
 });
 
 Route::get('/admin/services', function () {
-    return view('adminservices');
+    // Service::all(); //metdodo para leer todos los servicios de la base de datos
+
+    return view('adminservices', [
+        'services' => Service::all()
+    ]); //como segundo parametro puedo mandar datos a la vista
 });
+
+Route::get('/admin/services/{id}/edit', function ( $id ) {
+    $service = Service::find($id); 
+
+    // return $service;
+    return view('adminservicesedit', [
+        'service' => $service
+    ]);
+});
+
 
 Route::post('/admin/services', function ( Request $request ) {
     $validator = Validator::make($request->all(), [
@@ -67,5 +81,31 @@ Route::post('/admin/services', function ( Request $request ) {
 
     $data = request()->all();
     Service::create($data);
+    return redirect('/admin/services');
+});
+
+
+
+
+
+Route::patch('/admin/services', function ( Request $request ) {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|min:3|max:100',
+        'category' => 'required|in:1,2,3',
+        'description' => 'required|min:10|max:1000',
+        'img' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('/admin/services')
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+    // dd($validator->validated());
+    // dd($validator->errors());
+
+    $data = request()->all();
+    Service::update($data);
     return redirect('/admin/services');
 });
