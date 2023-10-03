@@ -54,7 +54,8 @@ Route::get('/admin/services', function () {
 
 Route::get('/admin/services/add', function () {
     return view('adminservicesform', [
-        'services' => Service::all()
+        'services' => Service::all(),
+        'h2' => 'Agregar servicio',
     ]); //como segundo parametro puedo mandar datos a la vista
 });
 
@@ -63,12 +64,13 @@ Route::get('/admin/services/{id}/edit', function ( $id ) {
 
     // return $service;
     return view('adminservicesform', [
-        'service' => $service
+        'service' => $service,
+        'h2' => 'Editar servicio',
     ]);
 });
 
 
-Route::post('/admin/services', function ( Request $request ) {
+Route::post('/admin/services/add', function ( Request $request ) {
     $validator = Validator::make($request->all(), [
         'name' => 'required|min:3|max:100',
         'category' => 'required|in:1,2,3',
@@ -77,7 +79,7 @@ Route::post('/admin/services', function ( Request $request ) {
     ]);
 
     if ($validator->fails()) {
-        return redirect('/admin/services')
+        return redirect('/admin/services/add')
             ->withErrors($validator)
             ->withInput();
     }
