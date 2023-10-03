@@ -877,7 +877,14 @@ table tr:hover{
     font-size: 0.7em;
     margin-right: 10px;
 }
-  
+
+/* mensaje de error */
+input + p, select + p, textarea + p{
+    margin: 0;
+    font-size: 0.8em;
+    color: var(--color-red);
+}
+
 @media (min-width: 650px){
 
     .homeservices > div > div {

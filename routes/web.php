@@ -50,14 +50,20 @@ Route::get('/admin/services', function () {
 
 Route::post('/admin/services', function ( Request $request ) {
     $validator = Validator::make($request->all(), [
-        'name' => 'required|alpha|min:3|max:100',
+        'name' => 'required|min:3|max:100',
         'category' => 'required|in:1,2,3',
         'description' => 'required|min:10|max:1000',
         'img' => 'required',
     ]);
 
-    dd($validator->validated());
-    dd($validator->errors());
+    if ($validator->fails()) {
+        return redirect('/admin/services')
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+    // dd($validator->validated());
+    // dd($validator->errors());
 
     $data = request()->all();
     Service::create($data);
