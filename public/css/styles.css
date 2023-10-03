@@ -662,7 +662,7 @@ padding-left: 10px;
 }
 
 
-.servicesection:after,  .logingmain form:after{
+.servicesection:after,  .loginmain form:after{
     content: "";
     position: absolute;
     top: 10px;
@@ -674,7 +674,7 @@ padding-left: 10px;
     transition: all 0.3s ease;
 }
 
-.estimateform, .logingmain form{ 
+.estimateform, .loginmain form, .adminmain form{ 
     background-color: var(--color-white);
     margin: 10px;
     padding: 30px;
@@ -689,7 +689,7 @@ padding-left: 10px;
     font-size: 1.3em;
 }
 
-.estimateform label, .logingmain form label{
+.estimateform label, .loginmain form label, .adminmain form label{
     display: block;
     margin: 20px auto 2px;
     font-size: 0.9em;
@@ -697,7 +697,7 @@ padding-left: 10px;
     color: var(--color-darkgray);
 }
 
-.estimateform input, .estimateform select, .estimateform textarea, .logingmain form input{
+.estimateform input, .estimateform select, .estimateform textarea, .loginmain form input, .adminmain form input{
     display: block;
     width: 100%;
     padding: 10px;
@@ -711,7 +711,7 @@ padding-left: 10px;
 }
 
 /* div del button */
-.estimateform > div:last-of-type, .logingmain form > div:last-of-type{
+.estimateform > div:last-of-type, .loginmain form > div:last-of-type, .adminmain form > div:last-of-type{
     display: flex;
     justify-content: center;
     margin: 30px 0 20px;
@@ -719,27 +719,27 @@ padding-left: 10px;
 
 
 /* ----- log in ----- */
-.logingmain, .adminmain{
+.loginmain, .adminmain{
     color: var(--color-white);
     padding: 20px;
     max-width: 1000px;
     margin: auto;
 }
 
-.logingmain .breadcrumb ol, .adminmain .breadcrumb ol{
+.loginmain .breadcrumb ol, .adminmain .breadcrumb ol{
     padding: 0;
     margin-bottom: 20px;
     font-size: 0.7em;
 }
 
-.logingmain h1{
+.loginmain h1{
     font-size: 1.8em;
     font-weight: 600;
     margin: 0 0 60px 0;
     color: var(--color-white);
 }
 
-.logingmain form{
+.loginmain form{
     margin: auto;
     width: 100%;
     max-width: 400px;
@@ -747,7 +747,7 @@ padding-left: 10px;
     position: relative;
 }
 
-/* .logingmain form:after{
+/* .loginmain form:after{
     background-color: var(--color-yellow);
 } */
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +36,8 @@ Route::get('/admin', function () {
 
 Route::get('/admin/users', function () {
     return view('users');
+});
+
+Route::post('/admin/users', function () {
+    return "recibido";
 });

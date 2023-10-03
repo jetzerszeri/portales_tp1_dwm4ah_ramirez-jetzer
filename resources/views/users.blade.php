@@ -16,7 +16,7 @@
         <li><a href="" class="btn">Agregar un usuario</a></li>
     </ul>
 
-    <div class="tablecontainer">
+    <!-- <div class="tablecontainer">
         <table>
             <thead>
                 <tr>
@@ -60,7 +60,24 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> -->
+
+    <form action="" method="post">
+        @csrf
+        <div>
+            <label for="username">Email</label>
+            <input type="email" placeholder="ejemplo@ejemplo.com" name="username">
+        </div>
+
+        <div>
+            <label for="password">Contraseña</label>
+            <input type="password" placeholder="Ingresa la contraseña" name="password">
+        </div>
+
+        <div>
+            <button type="submit" class="btn primary-green">Agregar usuario</button>
+        </div>
+    </form>
 
 
 </main>

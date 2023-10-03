@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 
-<main class="logingmain">
+<main class="loginmain">
     <nav class="breadcrumb">
         <ol>
             <li><a href="/">Home</a></li>
@@ -14,7 +14,7 @@
     <form action="">
         <div>
             <label for="username">Username</label>
-            <input type="text" placeholder="Ingresa el username" name="username">
+            <input type="text" placeholder="ejemplo@ejemplo.com" name="username">
         </div>
 
         <div>
