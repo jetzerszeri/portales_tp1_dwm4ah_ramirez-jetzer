@@ -21,7 +21,9 @@ Route::get('/', function () {
 });
 
 Route::get('/services', function () {
-    return view('services');
+    return view('services', [
+        'services' => Service::all(),
+    ]);
 });
 
 Route::get('/servicio', function () {
