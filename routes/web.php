@@ -26,8 +26,12 @@ Route::get('/services', function () {
     ]);
 });
 
-Route::get('/servicio', function () {
-    return view('servicio');
+Route::get('/services/{id}', function ( $id) {
+    $service = Service::find($id);
+
+    return view('servicio', [
+        'service' => $service,
+    ]);
 });
 
 Route::get('/login', function () {

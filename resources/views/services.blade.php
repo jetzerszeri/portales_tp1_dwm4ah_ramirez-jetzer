@@ -25,7 +25,7 @@
             <li> 
                 <div>
                     <div>
-                        <img src="{{ $service->img}}" alt="{{ $service->name}}">
+                        <img src="{{ asset($service->img) }}" alt="{{ $service->name}}">
                     </div>
                     <div>
                         <div>
