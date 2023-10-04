@@ -7,6 +7,7 @@
 
 <form action="" method="post">
     @csrf
+    @method('PATCH')
     <div>
         <label for="name">Nombre del servicio</label>
         <input type="text" placeholder="Ingresa el nombre del servicio" name="name" value="{{ old('name', optional($service)->name) }}">
@@ -34,7 +35,7 @@
     </div>
 
     <div>
-        <button type="submit" class="btn primary-green">Agregar usuario</button>
+        <button type="submit" class="btn primary-green">{{$h2}}</button>
     </div>
 </form>
 
