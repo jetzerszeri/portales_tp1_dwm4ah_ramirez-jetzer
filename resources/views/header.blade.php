@@ -2,7 +2,7 @@
     <nav >
         <div class="navbar">
             <div>
-                <div class="navbarlogo">GbyG PCS</div>
+                <a href="/" class="navbarlogo">GbyG PCS</a>
 
                 <div class="toggle-button">
                     <span class="bar"></span>
@@ -14,9 +14,9 @@
 
             <div class="navbar-links">
                 <ul>
-                    <li><a href="/" class="active">Inicio</a></li>
-                    <li><a href="/services" class="">Servicios</a></li>
-                    <!-- <li><a href="#" class="">Dashboard</a></li> -->
+                    <li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a></li>
+                    <li><a href="/services" class="{{ request()->is('services') ? 'active' : '' }}">Servicios</a></li>
+                    <li><a href="/admin" class="{{ request()->is('admin*') ? 'active' : '' }}">Dashboard</a></li>
                 </ul>
                 <div>
                     <a href="/login" class="btn">Iniciar sesión</a>
