@@ -164,7 +164,6 @@ Route::patch('/admin/users/{id}/edit', function ( Request $request , $id ) {
         'lastname' => $request->input('lastname'),
         'email' => $request->input('email'),
         'password' => Hash::make($request->input('password')),
-        'role' => 'editor',
     ];
 
     $user = User::find($id); 
