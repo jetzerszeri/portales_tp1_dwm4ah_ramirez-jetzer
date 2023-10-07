@@ -58,7 +58,18 @@ Route::get('/admin/users/add', function () {
 });
 
 Route::post('/admin/users/add', function ( Request $request ) {
-    // ddd($request);
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|min:3|max:100',
+        'lastname' => 'required|min:2|max:100',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|min:6|max:100',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('/admin/users/add')
+            ->withErrors($validator)
+            ->withInput();
+    }
 
     User::create([
         'name' => $request->input('name'),
@@ -67,6 +78,8 @@ Route::post('/admin/users/add', function ( Request $request ) {
         'password' => Hash::make($request->input('password')),
         'role' => 'admin',
     ]);
+
+    return redirect('/admin/users');
 
 });
 
