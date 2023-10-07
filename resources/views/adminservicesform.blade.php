@@ -7,7 +7,9 @@
 
 <form action="" method="post">
     @csrf
-    @method('PATCH')
+    @if(request()->is('admin/services/*/edit'))
+        @method('PATCH')
+    @endif
     <div>
         <label for="name">Nombre del servicio</label>
         <input type="text" placeholder="Ingresa el nombre del servicio" name="name" value="{{ old('name', optional($service)->name) }}">
