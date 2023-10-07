@@ -15,8 +15,8 @@
     <h2>{{$h2}}</h2>
 
     <ul class="usersOptions">
-        <li><a href="/admin/services" class="btn">Todos los servicios</a></li>
-        <li><a href="/admin/services/add" class="btn">Agregar un servicio</a></li>
+        <li><a href="/admin/services" class="btn">Mostrar todos</a></li>
+        <li><a href="/admin/services/add" class="btn">Agregar uno</a></li>
     </ul>
 
     @yield('subcontent')

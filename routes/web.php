@@ -43,12 +43,22 @@ Route::get('/admin', function () {
 });
 
 Route::get('/admin/users', function () {
-    return view('users');
+    return view('adminusers', [
+        // 'services' => Service::all(),
+        'h2' => 'Usuarios',
+    ]);
 });
 
-Route::post('/admin/users', function ( Request $request ) {
-    ddd($request);
+Route::get('/admin/users/add', function () {
+    return view('adminusersform', [
+        'h2' => 'Agregar usuario',
+    ]); //como segundo parametro puedo mandar datos a la vista
 });
+
+
+// Route::post('/admin/users', function ( Request $request ) {
+//     ddd($request);
+// });
 
 Route::get('/admin/services', function () {
     // Service::all(); //metdodo para leer todos los servicios de la base de datos
