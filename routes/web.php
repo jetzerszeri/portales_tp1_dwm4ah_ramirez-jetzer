@@ -42,16 +42,25 @@ Route::get('/login', function () {
 });
 
 Route::post('/login', function ( Request $request ) {
+    $validator = Validator::make($request->all(), [
+        'email' => 'required|email',
+        'password' => 'required|min:6',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('/login')
+            ->withErrors($validator)
+            ->withInput($request->except('password'));  // No devolvemos la contraseña por razones de seguridad
+    }
 
     $user = User::where('email', $request->input('email'))->first();
-
-    if ($user){
+    
+    if ($user && Hash::check($request->input('password'), $user->password)) {
         Auth::login($user);
         return redirect('/admin');
     } else {
-        return view('login');
+        return redirect('/login')->withErrors(['loginError' => 'Credenciales inválidas.']);
     }
-    // return $user->name;
 
 });
 
