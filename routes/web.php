@@ -296,3 +296,35 @@ Route::post('/admin/categories/add', function ( Request $request ) {
     Category::create($data);
     return redirect('/admin/categories');
 });
+
+Route::get('/admin/categories/{id}/edit', function (Request $request, $id ) {
+    if($request->user()){
+        $category = Category::find($id); 
+
+        return view('admincategoriesform', [
+            'category' => $category,
+            'h2' => 'Editar categoría',
+        ]);
+    } else {
+        return redirect('/login');
+    }
+});
+
+Route::patch('/admin/categories/{id}/edit', function (Request $request , $id) {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|min:3|max:100|unique:categories,name,' . $id,
+    ]);
+
+    if ($validator->fails()) {
+        return redirect("/admin/categories/{$id}/edit")
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+    $data = request()->all();
+
+    $category = Category::find($id);
+    $category->update($data);
+
+    return redirect('/admin/categories');
+});
