@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->string('lastname', 100);
+            $table->string('role', 50);
+            $table->softDeletes();
         });
     }
 
