@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -235,10 +236,6 @@ Route::post('/admin/services/add', function ( Request $request ) {
     return redirect('/admin/services');
 });
 
-
-
-
-
 Route::patch('/admin/services/{id}/edit', function (Request $request , $id) {
     $validator = Validator::make($request->all(), [
         'name' => 'required|min:3|max:100',
@@ -259,4 +256,16 @@ Route::patch('/admin/services/{id}/edit', function (Request $request , $id) {
     $service->update($data);
 
     return redirect('/admin/services');
+});
+
+Route::get('/admin/categories', function (Request $request) {
+
+    if($request->user() ){
+        return view('admincategories', [
+            'categories' => Category::all(),
+            'h2' => 'Categorías',
+        ]);
+    } else {
+        return redirect('/login');
+    }
 });
