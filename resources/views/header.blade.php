@@ -16,10 +16,14 @@
                 <ul>
                     <li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a></li>
                     <li><a href="/services" class="{{ request()->is('services') ? 'active' : '' }}">Servicios</a></li>
-                    <li><a href="/admin" class="{{ request()->is('admin*') ? 'active' : '' }}">Dashboard</a></li>
+                    @if(Auth::check())
+                        <li><a href="/admin" class="{{ request()->is('admin*') ? 'active' : '' }}">Dashboard</a></li>
+                    @endif
                 </ul>
                 <div>
-                    <a href="/login" class="btn">Iniciar sesión</a>
+                    <a href="{{ Auth::check() ? '/logout' : '/login' }}" class="btn">
+                        {{ Auth::check() ? 'Cerrar sesión' : 'Iniciar sesión' }}
+                    </a>
                 </div>
             </div>
         </div>
