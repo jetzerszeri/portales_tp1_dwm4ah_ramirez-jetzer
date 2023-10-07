@@ -27,7 +27,7 @@
     </div>
     <div>
         <label for="password">Contraseña</label>
-        <input type="password" name="password" value="{{ old('password', optional($user)->password) }}">
+        <input type="password" name="password" value="{{ old('password') }}">
         <p>{{ $errors->first('password') }}</p>
     </div>
 

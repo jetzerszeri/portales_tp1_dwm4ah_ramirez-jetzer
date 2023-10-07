@@ -54,7 +54,7 @@ Route::get('/admin/users', function () {
 Route::get('/admin/users/add', function () {
     return view('adminusersform', [
         'h2' => 'Agregar usuario',
-    ]); //como segundo parametro puedo mandar datos a la vista
+    ]);
 });
 
 Route::post('/admin/users/add', function ( Request $request ) {
@@ -93,13 +93,42 @@ Route::get('/admin/users/{id}/edit', function ( $id ) {
     ]);
 });
 
-Route::get('/admin/services', function () {
-    // Service::all(); //metdodo para leer todos los servicios de la base de datos
+Route::patch('/admin/users/{id}/edit', function ( Request $request , $id ) {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|min:3|max:100',
+        'lastname' => 'required|min:2|max:100',
+        'email' => 'required|email|unique:users,email,' . $id,
+        'password' => 'required|min:6|max:100',
+    ]);
 
+    if ($validator->fails()) {
+        return redirect("/admin/users/{$id}/edit")
+            ->withErrors($validator)
+            ->withInput();
+    };
+
+    $data = [
+        'name' => $request->input('name'),
+        'lastname' => $request->input('lastname'),
+        'email' => $request->input('email'),
+        'password' => Hash::make($request->input('password')),
+        'role' => 'editor',
+    ];
+
+    $user = User::find($id); 
+    $user->update($data);
+
+    return redirect('/admin/users');
+
+});
+
+
+
+Route::get('/admin/services', function () {
     return view('adminservices', [
         'services' => Service::all(),
         'h2' => 'Servicios',
-    ]); //como segundo parametro puedo mandar datos a la vista
+    ]);
 });
 
 
@@ -107,7 +136,7 @@ Route::get('/admin/services/add', function () {
     return view('adminservicesform', [
         'services' => Service::all(),
         'h2' => 'Agregar servicio',
-    ]); //como segundo parametro puedo mandar datos a la vista
+    ]);
 });
 
 Route::get('/admin/services/{id}/edit', function ( $id ) {
