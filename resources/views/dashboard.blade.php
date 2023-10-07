@@ -10,7 +10,7 @@
 
 
     <h1>Panel de administrador</h1>
-    <p>Bienvenido, Jake!</p>
+    <p>Bienvenido, {{$username}}</p>
 
     <ul class="admindoptions">
         <li>

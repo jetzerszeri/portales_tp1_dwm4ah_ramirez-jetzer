@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Service;
-use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +41,31 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/admin', function () {
-    return view('dashboard');
+Route::post('/login', function ( Request $request ) {
+
+    $user = User::where('email', $request->input('email'))->first();
+
+    if ($user){
+        Auth::login($user);
+        return redirect('/admin');
+    } else {
+        return view('login');
+    }
+    // return $user->name;
+
+});
+
+Route::get('/admin', function ( Request $request ) {
+    
+    if ($request->user()){
+        $currentUser = $request->user()->name;
+        return view('dashboard', [
+            'username' => $currentUser
+        ]);
+    } else {
+        return redirect('/login');
+    }
+
 });
 
 Route::get('/admin/users', function () {

@@ -11,10 +11,11 @@
 
     <h1>Iniciar sesión</h1>
 
-    <form action="">
+    <form action="" method="post">
+        @csrf
         <div>
-            <label for="username">Username</label>
-            <input type="text" placeholder="ejemplo@ejemplo.com" name="username">
+            <label for="email">E-mail</label>
+            <input type="text" placeholder="ejemplo@ejemplo.com" name="email">
         </div>
 
         <div>
