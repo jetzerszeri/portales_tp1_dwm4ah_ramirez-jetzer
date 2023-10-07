@@ -1,9 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +55,19 @@ Route::get('/admin/users/add', function () {
     return view('adminusersform', [
         'h2' => 'Agregar usuario',
     ]); //como segundo parametro puedo mandar datos a la vista
+});
+
+Route::post('/admin/users/add', function ( Request $request ) {
+    // ddd($request);
+
+    User::create([
+        'name' => $request->input('name'),
+        'lastname' => $request->input('lastname'),
+        'email' => $request->input('email'),
+        'password' => Hash::make($request->input('password')),
+        'role' => 'admin',
+    ]);
+
 });
 
 
