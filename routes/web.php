@@ -83,17 +83,26 @@ Route::get('/admin', function ( Request $request ) {
 
 });
 
-Route::get('/admin/users', function () {
-    return view('adminusers', [
-        'users' => User::all(),
-        'h2' => 'Usuarios',
-    ]);
+Route::get('/admin/users', function (Request $request) {
+
+    if($request->user()){
+        return view('adminusers', [
+            'users' => User::all(),
+            'h2' => 'Usuarios',
+        ]);
+    } else {
+        return redirect('/login');
+    }
 });
 
-Route::get('/admin/users/add', function () {
-    return view('adminusersform', [
-        'h2' => 'Agregar usuario',
-    ]);
+Route::get('/admin/users/add', function ( Request $request ) {
+    if($request->user()){
+        return view('adminusersform', [
+            'h2' => 'Agregar usuario',
+        ]);
+    } else {
+        return redirect('/login');
+    }
 });
 
 Route::post('/admin/users/add', function ( Request $request ) {
@@ -123,13 +132,17 @@ Route::post('/admin/users/add', function ( Request $request ) {
 });
 
 
-Route::get('/admin/users/{id}/edit', function ( $id ) {
+Route::get('/admin/users/{id}/edit', function (Request $request , $id ) {
     $user = User::find($id); 
 
-    return view('adminusersform', [
-        'user' => $user,
-        'h2' => 'Editar usuario',
-    ]);
+    if($request->user()){
+        return view('adminusersform', [
+            'user' => $user,
+            'h2' => 'Editar usuario',
+        ]);
+    } else {
+        return redirect('/login');
+    }
 });
 
 Route::patch('/admin/users/{id}/edit', function ( Request $request , $id ) {
@@ -163,29 +176,41 @@ Route::patch('/admin/users/{id}/edit', function ( Request $request , $id ) {
 
 
 
-Route::get('/admin/services', function () {
-    return view('adminservices', [
-        'services' => Service::all(),
-        'h2' => 'Servicios',
-    ]);
+Route::get('/admin/services', function (Request $request) {
+    if($request->user()){
+        return view('adminservices', [
+            'services' => Service::all(),
+            'h2' => 'Servicios',
+        ]);
+    } else {
+        return redirect('/login');
+    }
 });
 
 
-Route::get('/admin/services/add', function () {
-    return view('adminservicesform', [
-        'services' => Service::all(),
-        'h2' => 'Agregar servicio',
-    ]);
+Route::get('/admin/services/add', function (Request $request) {
+    if($request->user()){
+        return view('adminservicesform', [
+            'services' => Service::all(),
+            'h2' => 'Agregar servicio',
+        ]);
+    } else {
+        return redirect('/login');
+    }
 });
 
-Route::get('/admin/services/{id}/edit', function ( $id ) {
-    $service = Service::find($id); 
+Route::get('/admin/services/{id}/edit', function (Request $request, $id ) {
+    if($request->user()){
+        $service = Service::find($id); 
 
-    // return $service;
-    return view('adminservicesform', [
-        'service' => $service,
-        'h2' => 'Editar servicio',
-    ]);
+        // return $service;
+        return view('adminservicesform', [
+            'service' => $service,
+            'h2' => 'Editar servicio',
+        ]);
+    } else {
+        return redirect('/login');
+    }
 });
 
 
