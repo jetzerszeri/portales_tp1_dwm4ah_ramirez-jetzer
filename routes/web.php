@@ -269,3 +269,30 @@ Route::get('/admin/categories', function (Request $request) {
         return redirect('/login');
     }
 });
+
+Route::get('/admin/categories/add', function (Request $request) {
+    if($request->user()){
+        return view('admincategoriesform', [
+            'categories' => Category::all(),
+            'h2' => 'Agregar categoría',
+        ]);
+    } else {
+        return redirect('/login');
+    }
+});
+
+Route::post('/admin/categories/add', function ( Request $request ) {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|min:3|max:100',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('/admin/categories/add')
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+    $data = request()->all();
+    Category::create($data);
+    return redirect('/admin/categories');
+});
