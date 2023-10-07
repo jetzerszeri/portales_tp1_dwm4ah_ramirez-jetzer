@@ -84,9 +84,14 @@ Route::post('/admin/users/add', function ( Request $request ) {
 });
 
 
-// Route::post('/admin/users', function ( Request $request ) {
-//     ddd($request);
-// });
+Route::get('/admin/users/{id}/edit', function ( $id ) {
+    $user = User::find($id); 
+
+    return view('adminusersform', [
+        'user' => $user,
+        'h2' => 'Editar usuario',
+    ]);
+});
 
 Route::get('/admin/services', function () {
     // Service::all(); //metdodo para leer todos los servicios de la base de datos
