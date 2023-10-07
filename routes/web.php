@@ -76,7 +76,7 @@ Route::post('/admin/users/add', function ( Request $request ) {
         'lastname' => $request->input('lastname'),
         'email' => $request->input('email'),
         'password' => Hash::make($request->input('password')),
-        'role' => 'admin',
+        'role' => 'editor',
     ]);
 
     return redirect('/admin/users');
