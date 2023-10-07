@@ -64,6 +64,12 @@ Route::post('/login', function ( Request $request ) {
 
 });
 
+Route::get('/logout', function(){
+    Auth::logout();
+    return redirect('/login');
+});
+
+
 Route::get('/admin', function ( Request $request ) {
     
     if ($request->user()){
