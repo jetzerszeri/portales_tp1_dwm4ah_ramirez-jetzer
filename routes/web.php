@@ -46,7 +46,7 @@ Route::get('/admin', function () {
 
 Route::get('/admin/users', function () {
     return view('adminusers', [
-        // 'services' => Service::all(),
+        'users' => User::all(),
         'h2' => 'Usuarios',
     ]);
 });
