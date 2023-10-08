@@ -486,3 +486,31 @@ Route::get('/admin/requests/{id}/edit', function (Request $request, $id ) {
     }
 });
 
+
+Route::patch('/admin/requests/{id}/edit', function (Request $request, $id){
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|min:3|max:20',
+        'lastname' => 'required|min:2|max:20',
+        'email' => 'required|email',
+        'address' => 'required|min:2|max:100',
+        'city' => 'required|min:3|max:30',
+        'state_id' => 'required|in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15',
+        'zip_code' => 'required|digits:5',
+        'service_id' => 'required|exists:services,id',
+        'service_date' => 'date|after_or_equal:today',
+        'notes' => 'required|max:1000',
+    ]);
+
+    if($validator->fails()){
+        return redirect("/admin/requests/{$id}/edit")
+            ->withErrors($validator)
+            ->withInput();
+    };
+
+    $data = request()->all();
+
+    $solicitud = RequestModel::find($id);
+    $solicitud->update($data);
+
+    return redirect('/admin/requests');
+});
