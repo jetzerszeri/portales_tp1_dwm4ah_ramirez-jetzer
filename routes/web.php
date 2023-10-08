@@ -528,3 +528,13 @@ Route::get('/admin/states', function (Request $request) {
     }
 });
 
+Route::get('/admin/states/add', function (Request $request) {
+    if($request->user()){
+        return view('adminstatesform', [
+            // 'states' => State::all(),
+            'h2' => 'Agregar estado',
+        ]);
+    } else {
+        return redirect('/login');
+    }
+});
