@@ -26,4 +26,9 @@ class Request extends Model
     {
         return $this->belongsTo(Service::class, 'service_id', 'id');
     }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'state_id', 'id');
+    }
 }

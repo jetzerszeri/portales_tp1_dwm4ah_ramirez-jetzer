@@ -25,7 +25,7 @@
                     <td>{{ $request->email}}</td>
                     <td>{{ $request->address}}</td>
                     <td>{{ $request->city}}</td>
-                    <td>{{ $request->state_id}}</td>
+                    <td>{{ $request->state->abbreviation}}</td>
                     <td>{{ $request->zip_code}}</td>
                     <td>{{ $request->service->name}}</td>
                     <td>{{ $request->service_date}}</td>
