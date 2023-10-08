@@ -14,7 +14,7 @@
                     <th>Tipo de Servicio</th>
                     <th>Fecha del servicio</th>
                     <th>Notas</th>
-                    <!-- <th>Acciones</th> -->
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,10 +30,10 @@
                     <td>{{ $request->service->name}}</td>
                     <td>{{ $request->service_date}}</td>
                     <td>{{ $request->notes}}</td>
-                    <!-- <td>
-                        <a href="/admin/services/{{ $request->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <td>
+                        <a href="/admin/requests/{{ $request->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="" class="btn secundary-green"><i class="fa-solid fa-trash"></i></a>
-                    </td> -->
+                    </td>
                 </tr>
             @endforeach
             </tbody>

@@ -466,3 +466,20 @@ Route::post('admin/requests/add', function (Request $request) {
 });
 
 
+
+Route::get('/admin/requests/{id}/edit', function (Request $request, $id ) {
+    if($request->user()){
+        $servicesList = Service::all();
+        $solicitud = RequestModel::find($id); 
+
+        return view('adminrequestsform', [
+            'solicitud' => $solicitud,
+            'h2' => 'Editar solicitud',
+            'servicesList' => $servicesList,
+            'label_nota' => 'Notas',
+        ]);
+    } else {
+        return redirect('/login');
+    }
+});
+
