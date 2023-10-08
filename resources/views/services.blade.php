@@ -30,7 +30,7 @@
                     <div>
                         <div>
                             <h2>{{ $service->name}}</h2>
-                            <p>Categoría: {{ $service->category}}</p>
+                            <p>{{ $service->categoryRelation->name }}</p>
                         </div>
                         
                         <a href="/services/{{ $service->id}}" class="btn secundary-green">Ver detalles</a>

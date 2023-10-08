@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::get('/services', function () {
     return view('services', [
-        'services' => Service::all(),
+        'services' => Service::with('categoryRelation')->get(),
     ]);
 });
 
