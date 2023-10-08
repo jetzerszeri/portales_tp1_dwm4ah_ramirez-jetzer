@@ -45,6 +45,8 @@ Route::get('/services/{id}', function ( $id) {
     return view('servicio', [
         'service' => $service,
         'servicesList' => $servicesList,
+        'h2' => '¡Obtener estimado gratis!',
+        'label_nota' => 'Notas o instrucciones adicionales',
     ]);
 });
 
@@ -75,6 +77,16 @@ Route::post('/services/{id}', function ( $id, Request $request ) {
 
 Route::get('/login', function () {
     return view('login');
+});
+
+Route::get('/contact', function () {
+    $servicesList = Service::all();
+
+    return view('contact', [
+        'servicesList' => $servicesList,
+        'h2' => '¡Compartenos tu inquietud!',
+        'label_nota' => 'Coméntanos, ¿cómo podemos ayudarte?',
+    ]);
 });
 
 Route::post('/login', function ( Request $request ) {

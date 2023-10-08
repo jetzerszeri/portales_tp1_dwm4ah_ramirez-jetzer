@@ -1,6 +1,6 @@
 <form action="" class="estimateform" method="post">
 @csrf
-    <h2>Obtener estimado gratis!</h2>
+    <h2>{{$h2}}</h2>
 
     <div>
         <div>
@@ -69,7 +69,7 @@
     </div>
 
     <div>
-        <label for="notes">Notas adicionales</label>
+        <label for="notes">{{$label_nota}}</label>
         <textarea name="notes" placeholder="Ingresa las notas adicionales...">{{ old('notes') }}</textarea>
         <p>{{ $errors->first('notes') }}</p>
     </div>

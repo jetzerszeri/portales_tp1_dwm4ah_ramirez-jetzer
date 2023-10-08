@@ -44,7 +44,7 @@
             <div>
                 <h2>¿Necesitas un servicio personalizado?</h2>
                 <p>Dinos cómo podemos ayudarte</p>
-                <a href="/services" class="btn primary-green">Contáctanos</a>
+                <a href="/contact" class="btn primary-green">Contáctanos</a>
             </div>
 
         </section>
