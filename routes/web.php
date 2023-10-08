@@ -63,7 +63,7 @@ Route::post('/services/{id}', function ( $id, Request $request ) {
 
     $data = request()->all();
     RequestModel::create($data);
-    return "validó todo";
+    return view('success');
 });
 
 Route::get('/login', function () {
