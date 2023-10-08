@@ -25,6 +25,9 @@
         <li>
             <a href="/admin/requests"><i class="fa-solid fa-list-check"></i><span>Solicitudes</span></a>
         </li>
+        <li>
+            <a href="/admin/states"><i class="fa-solid fa-map-location-dot"></i><span>Estados</span></a>
+        </li>
     </ul>
 
     

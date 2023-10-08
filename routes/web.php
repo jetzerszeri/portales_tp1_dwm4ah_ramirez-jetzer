@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Request as RequestModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Models\State;
 
 /*
 |--------------------------------------------------------------------------
@@ -514,3 +515,16 @@ Route::patch('/admin/requests/{id}/edit', function (Request $request, $id){
 
     return redirect('/admin/requests');
 });
+
+Route::get('/admin/states', function (Request $request) {
+
+    if($request->user() ){
+        return view('adminstates', [
+            'states' => State::all(),
+            'h2' => 'Estados',
+        ]);
+    } else {
+        return redirect('/login');
+    }
+});
+
