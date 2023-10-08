@@ -432,6 +432,13 @@ Route::patch('/admin/categories/{id}/edit', function (Request $request , $id) {
     return redirect('/admin/categories');
 });
 
+Route::delete('/admin/categories/{id}', function ($id) {
+    $categoryToDelete = Category::findOrFail($id);
+    $categoryToDelete->delete();
+    return redirect('/admin/categories');
+});
+
+
 Route::get('/admin/requests', function (Request $request) {
 
     if($request->user() ){
