@@ -274,9 +274,11 @@ Route::get('/admin/services', function (Request $request) {
 
 Route::get('/admin/services/add', function (Request $request) {
     if($request->user()){
+        $categoriesList = Category::all();
         return view('adminservicesform', [
             'services' => Service::all(),
             'h2' => 'Agregar servicio',
+            'categoriesList' => $categoriesList,
         ]);
     } else {
         return redirect('/login');
@@ -286,11 +288,12 @@ Route::get('/admin/services/add', function (Request $request) {
 Route::get('/admin/services/{id}/edit', function (Request $request, $id ) {
     if($request->user()){
         $service = Service::find($id); 
-
+        $categoriesList = Category::all();
         // return $service;
         return view('adminservicesform', [
             'service' => $service,
             'h2' => 'Editar servicio',
+            'categoriesList' => $categoriesList,
         ]);
     } else {
         return redirect('/login');

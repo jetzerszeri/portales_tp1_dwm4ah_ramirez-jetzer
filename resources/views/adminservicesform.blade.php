@@ -18,9 +18,9 @@
     <div>
         <label for="category">Categoría</label>
         <select name="category">
-            <option value="1" @selected(old("category") == 1)>Remodelacion</option>
-            <option value="2" @selected(old("category") == 2)>Move in/Move out</option>
-            <option value="3" @selected(old("category") == 3)>Real State</option>
+            @foreach($categoriesList as $category)
+                <option value="{{ $category->id }}" {{ old('category', optional($service)->category) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+            @endforeach
         </select>
         {{ $errors->first('category') }}
     </div>
