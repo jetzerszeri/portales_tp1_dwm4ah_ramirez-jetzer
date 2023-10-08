@@ -33,9 +33,11 @@ Route::get('/services', function () {
 
 Route::get('/services/{id}', function ( $id) {
     $service = Service::find($id);
+    $servicesList = Service::all();
 
     return view('servicio', [
         'service' => $service,
+        'servicesList' => $servicesList,
     ]);
 });
 

@@ -54,10 +54,9 @@
         <div>
             <label for="service_id">Tipo de servicio</label>
             <select name="service_id">
-                <option value="1" @selected(old("service_id") == 1)>Limpieza post remodelación</option>
-                <option value="2" @selected(old("service_id") == 2)>Limpieza mantenimiento</option>
-                <option value="3" @selected(old("service_id") == 3)>Limpieza final</option>
-                <option value="4" @selected(old("service_id") == 4)>Limpieza profunda</option>
+                @foreach($servicesList as $servicio)
+                    <option value="{{ $servicio->id }}" @selected(old("service_id") == $servicio->id)>{{ $servicio->name }}</option>
+                @endforeach
             </select>
             <p>{{ $errors->first('service_id') }}</p>
         </div>
