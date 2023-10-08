@@ -262,6 +262,12 @@ Route::patch('/admin/users/{id}/edit', function ( Request $request , $id ) {
 
 });
 
+Route::delete('/admin/users/{id}', function ($id) {
+    $userToDelete = User::findOrFail($id);
+    $userToDelete->delete();
+    return redirect('/admin/users');
+});
+
 
 
 Route::get('/admin/services', function (Request $request) {
