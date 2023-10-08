@@ -165,7 +165,7 @@ ul{
     color: var(--color-darkgreen);
     border: 1.5px solid var(--color-darkgreen);
 }
-.btn.secundary-green:hover{
+.btn.secundary-green:hover, .btn.secundary-green.active{
     background-color: var(--color-darkgreen);
     color: var(--color-white);
 }

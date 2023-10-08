@@ -12,9 +12,12 @@
 
         <div>
             <ul>
-                <li><a href="/services?cat=1" class="btn secundary-green">Remodelación</a></li>
-                <li><a href="/services?cat=2" class="btn secundary-green">Mudanza</a></li>
-                <li><a href="/services?cat=3" class="btn secundary-green">Real State</a></li>
+                @if ($selectedCategory)
+                    <li><a href="/services" class="btn secundary-green">Mostrar todos</a></li>
+                @endif
+                <li><a href="/services?cat=1" class="btn secundary-green {{ $selectedCategory == 1 ? 'active' : '' }}">Remodelación</a></li>
+                <li><a href="/services?cat=2" class="btn secundary-green {{ $selectedCategory == 2 ? 'active' : '' }}">Mudanza</a></li>
+                <li><a href="/services?cat=3" class="btn secundary-green {{ $selectedCategory == 3 ? 'active' : '' }}">Real State</a></li>
             </ul>
         </div>
     </header>

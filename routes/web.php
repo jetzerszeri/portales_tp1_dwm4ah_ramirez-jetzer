@@ -25,9 +25,16 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/services', function () {
+Route::get('/services', function (Request $request) {
+    $categoryId = $request->input('cat');
+
+    $services = $categoryId 
+                ? Service::with('categoryRelation')->where('category', $categoryId)->get() 
+                : Service::with('categoryRelation')->get();
+
     return view('services', [
-        'services' => Service::with('categoryRelation')->get(),
+        'services' => $services,
+        'selectedCategory' => $categoryId,
     ]);
 });
 
