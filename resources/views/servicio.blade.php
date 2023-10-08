@@ -5,7 +5,7 @@
 
 <nav class="breadcrumb">
     <ol>
-        <li><a href="services">Servicios</a></li>
+        <li><a href="/services">Servicios</a></li>
         <li aria-current="page">{{ $service->name}}</li>
     </ol>
 </nav>
