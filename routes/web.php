@@ -38,6 +38,29 @@ Route::get('/services/{id}', function ( $id) {
     ]);
 });
 
+Route::post('/services/{id}', function ( $id, Request $request ) {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|min:3|max:20',
+        'lastname' => 'required|min:2|max:20',
+        'email' => 'required|email',
+        'address' => 'required|min:2|max:100',
+        'city' => 'required|min:3|max:30',
+        'state_id' => 'required|in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15',
+        'zip_code' => 'required|digits:5',
+        'service_id' => 'required|exists:services,id',
+        'service_date' => 'required|date|after_or_equal:today',
+        'notes' => 'max:1000',
+    ]);
+
+    if($validator->fails()){
+        return redirect("/services/{$id}")
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+    return "validó todo";
+});
+
 Route::get('/login', function () {
     return view('login');
 });
