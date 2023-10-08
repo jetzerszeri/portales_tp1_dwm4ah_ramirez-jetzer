@@ -555,3 +555,36 @@ Route::post('/admin/states/add', function ( Request $request ) {
     State::create($data);
     return redirect('/admin/states');
 });
+
+Route::get('/admin/states/{id}/edit', function (Request $request, $id ) {
+    if($request->user()){
+        $state = State::find($id); 
+
+        return view('adminstatesform', [
+            'state' => $state,
+            'h2' => 'Editar estado',
+        ]);
+    } else {
+        return redirect('/login');
+    }
+});
+
+Route::patch('/admin/states/{id}/edit', function (Request $request , $id) {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|min:3|max:100',
+        'abbreviation' => 'required|min:2|max:2|unique:states,abbreviation,' . $id,
+    ]);
+
+    if ($validator->fails()) {
+        return redirect("/admin/states/{$id}/edit")
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+    $data = request()->all();
+
+    $state = State::find($id);
+    $state->update($data);
+
+    return redirect('/admin/states');
+});
