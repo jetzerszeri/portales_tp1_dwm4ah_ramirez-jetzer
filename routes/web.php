@@ -359,7 +359,7 @@ Route::get('/admin/requests', function (Request $request) {
 
     if($request->user() ){
         return view('adminrequests', [
-            'requests' => RequestModel::all(),
+            'requests' => RequestModel::with('service')->get(),
             'h2' => 'Solicitudes',
         ]);
     } else {
