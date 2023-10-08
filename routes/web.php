@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Request as RequestModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -56,8 +57,10 @@ Route::post('/services/{id}', function ( $id, Request $request ) {
         return redirect("/services/{$id}")
             ->withErrors($validator)
             ->withInput();
-    }
+    };
 
+    $data = request()->all();
+    RequestModel::create($data);
     return "validó todo";
 });
 
