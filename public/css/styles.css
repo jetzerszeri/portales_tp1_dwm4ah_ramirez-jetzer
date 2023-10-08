@@ -875,7 +875,7 @@ table tr:hover{
 .tablecontainer .btn{
     padding: 5px 10px;
     font-size: 0.7em;
-    margin-right: 10px;
+    margin: 5px;
 }
 
 /* mensaje de error */
@@ -883,6 +883,16 @@ input + p, select + p, textarea + p{
     margin: 0;
     font-size: 0.8em;
     color: var(--color-red);
+}
+
+.deleteformbtn{
+    display: inline-block;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
 }
 
 @media (min-width: 650px){

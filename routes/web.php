@@ -522,6 +522,13 @@ Route::patch('/admin/requests/{id}/edit', function (Request $request, $id){
     return redirect('/admin/requests');
 });
 
+Route::delete('/admin/requests/{id}', function ($id) {
+    $requestToDelete = RequestModel::findOrFail($id);
+    $requestToDelete->delete();
+    return redirect('/admin/requests');
+});
+
+
 Route::get('/admin/states', function (Request $request) {
 
     if($request->user() ){
