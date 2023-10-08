@@ -355,6 +355,12 @@ Route::patch('/admin/services/{id}/edit', function (Request $request , $id) {
     return redirect('/admin/services');
 });
 
+Route::delete('/admin/services/{id}', function ($id) {
+    $serviceToDelete = Service::findOrFail($id);
+    $serviceToDelete->delete();
+    return redirect('/admin/services');
+});
+
 Route::get('/admin/categories', function (Request $request) {
 
     if($request->user() ){
