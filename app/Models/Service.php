@@ -16,4 +16,10 @@ class Service extends Model
         'img',
         // 'ip_address' => request()->ip(),
     ];
+
+    public function categoryRelation()
+    {
+        return $this->belongsTo(Category::class, 'category', 'id');
+    }
+    
 }

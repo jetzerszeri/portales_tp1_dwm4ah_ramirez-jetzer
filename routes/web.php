@@ -179,7 +179,7 @@ Route::patch('/admin/users/{id}/edit', function ( Request $request , $id ) {
 Route::get('/admin/services', function (Request $request) {
     if($request->user()){
         return view('adminservices', [
-            'services' => Service::all(),
+            'services' => Service::with('categoryRelation')->get(),
             'h2' => 'Servicios',
         ]);
     } else {
