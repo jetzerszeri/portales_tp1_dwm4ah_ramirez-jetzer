@@ -620,3 +620,9 @@ Route::patch('/admin/states/{id}/edit', function (Request $request , $id) {
 
     return redirect('/admin/states');
 });
+
+Route::delete('/admin/states/{id}', function ($id) {
+    $stateToDelete = State::findOrFail($id);
+    $stateToDelete->delete();
+    return redirect('/admin/states');
+});
