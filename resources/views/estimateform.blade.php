@@ -1,5 +1,8 @@
 <form action="" class="estimateform" method="post">
 @csrf
+    @if(request()->is('admin/requests/*/edit'))
+        @method('PATCH')
+    @endif
 
     @if(!request()->is('admin/requests/*'))    
         <h2>{{$h2}}</h2>
@@ -58,7 +61,7 @@
             <label for="service_id">Tipo de servicio</label>
             <select name="service_id">
                 @foreach($servicesList as $servicio)
-                    <option value="{{ $servicio->id }}" @selected(old("service_id") == $servicio->id)>{{ $servicio->name }}</option>
+                    <option value="{{ $servicio->id }}" {{ old('service_id', optional($solicitud)->service_id) == $servicio->id ? 'selected' : '' }}>{{ $servicio->name }}</option>
                 @endforeach
             </select>
             <p>{{ $errors->first('service_id') }}</p>
