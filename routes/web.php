@@ -354,3 +354,15 @@ Route::patch('/admin/categories/{id}/edit', function (Request $request , $id) {
 
     return redirect('/admin/categories');
 });
+
+Route::get('/admin/requests', function (Request $request) {
+
+    if($request->user() ){
+        return view('adminrequests', [
+            'requests' => RequestModel::all(),
+            'h2' => 'Solicitudes',
+        ]);
+    } else {
+        return redirect('/login');
+    }
+});
