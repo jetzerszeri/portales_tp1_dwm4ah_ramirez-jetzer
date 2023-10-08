@@ -1,6 +1,9 @@
 <form action="" class="estimateform" method="post">
 @csrf
-    <h2>{{$h2}}</h2>
+
+    @if(!request()->is('admin/requests/*'))    
+        <h2>{{$h2}}</h2>
+    @endif
 
     <div>
         <div>

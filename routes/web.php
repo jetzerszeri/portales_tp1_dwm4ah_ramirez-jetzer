@@ -424,3 +424,45 @@ Route::get('/admin/requests', function (Request $request) {
         return redirect('/login');
     }
 });
+
+
+Route::get('/admin/requests/add', function (Request $request) {
+    if($request->user()){
+        $servicesList = Service::all();
+        return view('adminrequestsform', [
+            'requests' => RequestModel::all(),
+            'h2' => 'Agregar solicitud',
+            'servicesList' => $servicesList,
+            'label_nota' => 'Notas',
+        ]);
+    } else {
+        return redirect('/login');
+    }
+});
+
+Route::post('admin/requests/add', function (Request $request) {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|min:3|max:20',
+        'lastname' => 'required|min:2|max:20',
+        'email' => 'required|email',
+        'address' => 'required|min:2|max:100',
+        'city' => 'required|min:3|max:30',
+        'state_id' => 'required|in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15',
+        'zip_code' => 'required|digits:5',
+        'service_id' => 'required|exists:services,id',
+        'service_date' => 'date|after_or_equal:today',
+        'notes' => 'required|max:1000',
+    ]);
+
+    if($validator->fails()){
+        return redirect("/admin/requests/add")
+            ->withErrors($validator)
+            ->withInput();
+    };
+
+    $data = request()->all();
+    RequestModel::create($data);
+    return redirect('/admin/requests');
+});
+
+
