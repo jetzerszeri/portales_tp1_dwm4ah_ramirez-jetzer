@@ -538,3 +538,20 @@ Route::get('/admin/states/add', function (Request $request) {
         return redirect('/login');
     }
 });
+
+Route::post('/admin/states/add', function ( Request $request ) {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|min:3|max:100',
+        'abbreviation' => 'required|min:2|max:2',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('/admin/states/add')
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+    $data = request()->all();
+    State::create($data);
+    return redirect('/admin/states');
+});
