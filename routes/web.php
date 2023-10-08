@@ -42,12 +42,14 @@ Route::get('/services', function (Request $request) {
 Route::get('/services/{id}', function ( $id) {
     $service = Service::find($id);
     $servicesList = Service::all();
+    $statesList = State::all();
 
     return view('servicio', [
         'service' => $service,
         'servicesList' => $servicesList,
         'h2' => '¡Obtener estimado gratis!',
         'label_nota' => 'Notas o instrucciones adicionales',
+        'statesList' => $statesList,
     ]);
 });
 
@@ -83,11 +85,12 @@ Route::get('/login', function () {
 
 Route::get('/contact', function () {
     $servicesList = Service::all();
-
+    $statesList = State::all();
     return view('contact', [
         'servicesList' => $servicesList,
         'h2' => '¡Compartenos tu inquietud!',
         'label_nota' => 'Coméntanos, ¿cómo podemos ayudarte?',
+        'statesList' => $statesList, 
     ]);
 });
 
@@ -433,11 +436,13 @@ Route::get('/admin/requests', function (Request $request) {
 Route::get('/admin/requests/add', function (Request $request) {
     if($request->user()){
         $servicesList = Service::all();
+        $statesList = State::all();
         return view('adminrequestsform', [
             'requests' => RequestModel::all(),
             'h2' => 'Agregar solicitud',
             'servicesList' => $servicesList,
             'label_nota' => 'Notas',
+            'statesList' => $statesList,
         ]);
     } else {
         return redirect('/login');
@@ -475,12 +480,13 @@ Route::get('/admin/requests/{id}/edit', function (Request $request, $id ) {
     if($request->user()){
         $servicesList = Service::all();
         $solicitud = RequestModel::find($id); 
-
+        $statesList = State::all();
         return view('adminrequestsform', [
             'solicitud' => $solicitud,
             'h2' => 'Editar solicitud',
             'servicesList' => $servicesList,
             'label_nota' => 'Notas',
+            'statesList' => $statesList,
         ]);
     } else {
         return redirect('/login');

@@ -1,3 +1,6 @@
+@php
+    $solicitud = $solicitud ?? [];
+@endphp
 <form action="" class="estimateform" method="post">
 @csrf
     @if(request()->is('admin/requests/*/edit'))
@@ -43,8 +46,11 @@
         <div>
             <label for="state_id">Estado</label>
             <select name="state_id">
-                <option value="1" @selected(old("state_id") == 1)>NC</option>
-                <option value="2" @selected(old("state_id") == 2)>SC</option>
+                @foreach($statesList as $state)
+                    <option value="{{ $state->id }}" {{ old('state_id', optional($solicitud)->state_id) == $state->id ? 'selected' : '' }}>{{ $state->abbreviation }}</option>
+                @endforeach
+                <!-- <option value="1" @selected(old("state_id") == 1)>NC</option>
+                <option value="2" @selected(old("state_id") == 2)>SC</option> -->
             </select>
             <p>{{ $errors->first('state_id') }}</p>
         </div>
