@@ -892,7 +892,32 @@ input + p, select + p, textarea + p{
     background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
+}
 
+.contactmain{
+    padding: 30px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.contactmain h1{
+    color: var(--color-white);
+    padding: 10px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.contactmain h1 + p{
+    color: var(--color-white);
+    padding: 10px;
+    font-weight: 300;
+    margin: 0 0 40px 0;
+    max-width: 700px;
+}
+
+.contactmain form{
+    max-width: 710px;
+    margin: auto;
 }
 
 @media (min-width: 650px){

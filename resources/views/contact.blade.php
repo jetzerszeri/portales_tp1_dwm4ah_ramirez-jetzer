@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 
-<main>
+<main class="contactmain">
 
 <nav class="breadcrumb">
     <ol>
