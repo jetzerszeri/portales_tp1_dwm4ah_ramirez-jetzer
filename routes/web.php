@@ -173,24 +173,25 @@ Route::get('/admin', function ( Request $request ) {
 });
 
 Route::get('/admin/users', function (Request $request) {
-
-    if($request->user()){
+    $user = $request->user();
+    if($user && $user->role == 'admin'){
         return view('adminusers', [
             'users' => User::all(),
             'h2' => 'Usuarios',
         ]);
     } else {
-        return redirect('/login');
+        return redirect('/admin');
     }
 });
 
 Route::get('/admin/users/add', function ( Request $request ) {
-    if($request->user()){
+    $user = $request->user();
+    if($user && $user->role == 'admin'){
         return view('adminusersform', [
             'h2' => 'Agregar usuario',
         ]);
     } else {
-        return redirect('/login');
+        return redirect('/admin');
     }
 });
 
@@ -223,14 +224,14 @@ Route::post('/admin/users/add', function ( Request $request ) {
 
 Route::get('/admin/users/{id}/edit', function (Request $request , $id ) {
     $user = User::find($id); 
-
-    if($request->user()){
+    $currentUser = $request->user();
+    if($currentUser && $currentUser->role == 'admin'){
         return view('adminusersform', [
             'user' => $user,
             'h2' => 'Editar usuario',
         ]);
     } else {
-        return redirect('/login');
+        return redirect('/admin');
     }
 });
 

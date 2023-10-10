@@ -13,9 +13,11 @@
     <p>Bienvenido, {{$username}}</p>
 
     <ul class="admindoptions">
+        @if(Auth::user()->role === 'admin')
         <li>
             <a href="/admin/users"><i class="fa-solid fa-users"></i><span>Usuarios</span></a>
         </li>
+        @endif
         <li>
             <a href="/admin/services"><i class="fa-solid fa-hand-sparkles"></i><span>Servicios</span></a>
         </li>
