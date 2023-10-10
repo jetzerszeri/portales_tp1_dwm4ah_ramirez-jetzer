@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             // CategoriesSeeder::class,
             // ServicesSeeder::class,
             // UsersSeeder::class,
-            RequestsSeeder::class,
+            // RequestsSeeder::class,
+            StatesSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
