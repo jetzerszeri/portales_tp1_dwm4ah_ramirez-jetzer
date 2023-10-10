@@ -656,7 +656,7 @@ font-size: 1.3em;
 font-weight: 600;
 }
 
-.servicesection > div:nth-of-type(2) p{
+.servicesection > div:nth-of-type(2) h2 + p{
 margin-bottom: 80px;
 padding-left: 10px;
 }
