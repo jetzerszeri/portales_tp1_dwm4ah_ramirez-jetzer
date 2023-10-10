@@ -20,11 +20,14 @@
                     <td>{{ $user->role}}</td>
                     <td>
                         <a href="/admin/users/{{ $user->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
+                        
+                        @if($user->role !== 'admin')
                         <form action="/admin/users/{{ $user->id }}" method="POST" class="deleteformbtn">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn secundary-green" onclick="return confirm('¿Estás seguro de querer eliminar el usuario {{ $user->email}}?');"><i class="fa-solid fa-trash"></i></button>
                         </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach
