@@ -14,6 +14,8 @@ use App\Models\State;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ContactController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,53 +36,8 @@ Route::get('/', function () {
 
 Route::resource('services', ServicesController::class);
 Route::resource('requests', RequestsController::class);
-Route::resource('login', LoginController::class)->name('login');
-
-
-
-
-
-Route::get('/contact', function () {
-    $servicesList = Service::all();
-    $statesList = State::all();
-    return view('contact', [
-        'servicesList' => $servicesList,
-        'h2' => '¡Compartenos tu inquietud!',
-        'label_nota' => 'Coméntanos, ¿cómo podemos ayudarte?',
-        'statesList' => $statesList, 
-    ]);
-});
-
-
-
-
-
-Route::post('/contact', function (Request $request) {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|min:3|max:20',
-        'lastname' => 'required|min:2|max:20',
-        'email' => 'required|email',
-        'address' => 'required|min:2|max:100',
-        'city' => 'required|min:3|max:30',
-        'state_id' => 'required|in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15',
-        'zip_code' => 'required|digits:5',
-        'service_id' => 'required|exists:services,id',
-        'service_date' => 'date|after_or_equal:today',
-        'notes' => 'required|max:1000',
-    ]);
-
-    if($validator->fails()){
-        return redirect("/contact")
-            ->withErrors($validator)
-            ->withInput();
-    };
-
-    $data = request()->all();
-    RequestModel::create($data);
-    session(['form_submitted' => true]);
-    return redirect('/success');
-});
-
+Route::resource('login', LoginController::class);
+Route::resource('contact', ContactController::class);
 
 
 
