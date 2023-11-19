@@ -39,8 +39,8 @@ Route::get('/services', function (Request $request) {
     ]);
 });
 
-Route::get('/services/{id}', function ( $id) {
-    $service = Service::find($id);
+Route::get('/services/{service}', function ( Service $service) {
+    // $service = Service::find($id);
     $servicesList = Service::all();
     $statesList = State::all();
 
