@@ -13,6 +13,7 @@ use App\Models\State;
 
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\RequestsController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,13 +34,9 @@ Route::get('/', function () {
 
 Route::resource('services', ServicesController::class);
 Route::resource('requests', RequestsController::class);
+Route::resource('login', LoginController::class)->name('login');
 
 
-
-
-Route::get('/login', function () {
-    return view('login');
-});
 
 
 
@@ -95,28 +92,7 @@ Route::get('/success', function () {
 
 
 
-Route::post('/login', function ( Request $request ) {
-    $validator = Validator::make($request->all(), [
-        'email' => 'required|email',
-        'password' => 'required|min:6',
-    ]);
 
-    if ($validator->fails()) {
-        return redirect('/login')
-            ->withErrors($validator)
-            ->withInput($request->except('password'));  // No devolvemos la contraseña por razones de seguridad
-    }
-
-    $user = User::where('email', $request->input('email'))->first();
-    
-    if ($user && Hash::check($request->input('password'), $user->password)) {
-        Auth::login($user);
-        return redirect('/admin');
-    } else {
-        return redirect('/login')->withErrors(['loginError' => 'Credenciales inválidas.']);
-    }
-
-});
 
 Route::get('/logout', function(){
     Auth::logout();
