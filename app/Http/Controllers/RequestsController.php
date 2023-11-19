@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateRequest; // importo el  middleware que acabo de crear
+use App\Models\Request as RequestModel;
 
 class RequestsController extends Controller
 {
@@ -25,14 +27,12 @@ class RequestsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        //
-        $mensaje = 'solicitud reciba';
-        
-        return $mensaje;
-
-
+        // return $request->all();
+        $data = request()->all();
+        RequestModel::create($data);
+        return redirect('/success');
     }
 
     /**
