@@ -1,7 +1,7 @@
 @php
     $solicitud = $solicitud ?? [];
 @endphp
-<form action="" class="estimateform" method="post">
+<form action="/requests" class="estimateform" method="post">
 @csrf
     @if(request()->is('admin/requests/*/edit'))
         @method('PATCH')

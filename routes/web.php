@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\State;
 
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\RequestsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +32,10 @@ Route::get('/', function () {
 
 
 Route::resource('services', ServicesController::class);
+Route::resource('requests', RequestsController::class);
 
 
-
-// Route::post('/services/{id}', function ( $id, Request $request ) {
+// Route::post('/requests', function ( $id, Request $request ) {
 //     $validator = Validator::make($request->all(), [
 //         'name' => 'required|min:3|max:20',
 //         'lastname' => 'required|min:2|max:20',
