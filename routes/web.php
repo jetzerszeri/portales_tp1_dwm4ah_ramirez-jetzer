@@ -17,6 +17,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\SuccessController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\AdminController;
+
 
 
 /*
@@ -38,21 +40,12 @@ Route::resource('login', LoginController::class);
 Route::resource('contact', ContactController::class);
 Route::resource('success', SuccessController::class); //only has a get method
 Route::resource('logout', LogoutController::class); //only has a get method
+Route::resource('admin', AdminController::class); //only has a get method
 
 
 
-Route::get('/admin', function ( Request $request ) {
-    
-    if ($request->user()){
-        $currentUser = $request->user()->name;
-        return view('dashboard', [
-            'username' => $currentUser
-        ]);
-    } else {
-        return redirect('/login');
-    }
 
-});
+
 
 Route::get('/admin/users', function (Request $request) {
     $user = $request->user();
