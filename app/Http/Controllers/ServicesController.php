@@ -3,15 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Service;
+use App\Models\State;
 
 class ServicesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index( Request $request )
     {
         //
+        $categoryId = $request->input('cat');
+
+        $services = $categoryId 
+                    ? Service::with('categoryRelation')->where('category', $categoryId)->get() 
+                    : Service::with('categoryRelation')->get();
+    
+        return view('services', [
+            'services' => $services,
+            'selectedCategory' => $categoryId,
+        ]);
     }
 
     /**
@@ -33,9 +45,19 @@ class ServicesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show( Service $service )
     {
-        //
+        $servicesList = Service::all();
+        $statesList = State::all();
+
+        return view('servicio', [
+            'service' => $service,
+            'servicesList' => $servicesList,
+            'h2' => '¡Obtener estimado gratis!',
+            'label_nota' => 'Notas o instrucciones adicionales',
+            'statesList' => $statesList,
+        ]);
+
     }
 
     /**

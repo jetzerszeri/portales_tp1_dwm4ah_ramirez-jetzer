@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\State;
 
+use App\Http\Controllers\ServicesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,62 +28,46 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/services', function (Request $request) {
-    $categoryId = $request->input('cat');
 
-    $services = $categoryId 
-                ? Service::with('categoryRelation')->where('category', $categoryId)->get() 
-                : Service::with('categoryRelation')->get();
 
-    return view('services', [
-        'services' => $services,
-        'selectedCategory' => $categoryId,
-    ]);
-});
+Route::resource('services', ServicesController::class);
 
-Route::get('/services/{service}', function ( Service $service) {
-    // $service = Service::find($id);
-    $servicesList = Service::all();
-    $statesList = State::all();
 
-    return view('servicio', [
-        'service' => $service,
-        'servicesList' => $servicesList,
-        'h2' => '¡Obtener estimado gratis!',
-        'label_nota' => 'Notas o instrucciones adicionales',
-        'statesList' => $statesList,
-    ]);
-});
 
-Route::post('/services/{id}', function ( $id, Request $request ) {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|min:3|max:20',
-        'lastname' => 'required|min:2|max:20',
-        'email' => 'required|email',
-        'address' => 'required|min:2|max:100',
-        'city' => 'required|min:3|max:30',
-        'state_id' => 'required|in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15',
-        'zip_code' => 'required|digits:5',
-        'service_id' => 'required|exists:services,id',
-        'service_date' => 'required|date|after_or_equal:today',
-        'notes' => 'max:1000',
-    ]);
+// Route::post('/services/{id}', function ( $id, Request $request ) {
+//     $validator = Validator::make($request->all(), [
+//         'name' => 'required|min:3|max:20',
+//         'lastname' => 'required|min:2|max:20',
+//         'email' => 'required|email',
+//         'address' => 'required|min:2|max:100',
+//         'city' => 'required|min:3|max:30',
+//         'state_id' => 'required|in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15',
+//         'zip_code' => 'required|digits:5',
+//         'service_id' => 'required|exists:services,id',
+//         'service_date' => 'required|date|after_or_equal:today',
+//         'notes' => 'max:1000',
+//     ]);
 
-    if($validator->fails()){
-        return redirect("/services/{$id}")
-            ->withErrors($validator)
-            ->withInput();
-    };
+//     if($validator->fails()){
+//         return redirect("/services/{$id}")
+//             ->withErrors($validator)
+//             ->withInput();
+//     };
 
-    $data = request()->all();
-    RequestModel::create($data);
-    session(['form_submitted' => true]);
-    return redirect('/success');
-});
+//     $data = request()->all();
+//     RequestModel::create($data);
+//     session(['form_submitted' => true]);
+//     return redirect('/success');
+// });
+
+
+
 
 Route::get('/login', function () {
     return view('login');
 });
+
+
 
 Route::get('/contact', function () {
     $servicesList = Service::all();
@@ -93,6 +79,10 @@ Route::get('/contact', function () {
         'statesList' => $statesList, 
     ]);
 });
+
+
+
+
 
 Route::post('/contact', function (Request $request) {
     $validator = Validator::make($request->all(), [
@@ -119,6 +109,9 @@ Route::post('/contact', function (Request $request) {
     session(['form_submitted' => true]);
     return redirect('/success');
 });
+
+
+
 
 Route::get('/success', function () {
     if (session('form_submitted')) {
