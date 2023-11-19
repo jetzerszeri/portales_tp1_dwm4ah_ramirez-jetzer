@@ -15,6 +15,8 @@ use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SuccessController;
+use App\Http\Controllers\LogoutController;
 
 
 /*
@@ -28,33 +30,15 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-
+Route::get('/', function () { return view('index');});
 
 Route::resource('services', ServicesController::class);
 Route::resource('requests', RequestsController::class);
 Route::resource('login', LoginController::class);
 Route::resource('contact', ContactController::class);
+Route::resource('success', SuccessController::class); //only has a get method
+Route::resource('logout', LogoutController::class); //only has a get method
 
-
-
-Route::get('/success', function () {
-
-    return view('success');
-
-});
-
-
-
-
-
-Route::get('/logout', function(){
-    Auth::logout();
-    return redirect('/login');
-});
 
 
 Route::get('/admin', function ( Request $request ) {
