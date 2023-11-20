@@ -9,11 +9,11 @@
 </head>
 <body>
 
-    @include('header')
+    @include('partials.header')
 
     @yield('content')
 
-    @include('footer')
+    @include('partials.footer')
 
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
