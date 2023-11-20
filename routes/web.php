@@ -20,6 +20,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\ServicesController as AdminServicesController;
+use App\Http\Controllers\Admin\CategoriesController;
 
 
 
@@ -46,6 +47,7 @@ Route::resource('logout', LogoutController::class); //only has a get method
 // Route::resource('admin', AdminController::class); //only has a get method
 Route::resource('admin/users', UsersController::class)->middleware('auth');
 Route::resource('admin/services', AdminServicesController::class)->middleware('auth');
+Route::resource('admin/categories', CategoriesController::class)->middleware('auth');
 
 
 
@@ -64,83 +66,6 @@ Route::get('/admin', function ( Request $request ) {
 
 
 
-
-Route::get('/admin/categories', function (Request $request) {
-
-    if($request->user() ){
-        return view('admincategories', [
-            'categories' => Category::all(),
-            'h2' => 'Categorías',
-        ]);
-    } else {
-        return redirect('/login');
-    }
-});
-
-Route::get('/admin/categories/add', function (Request $request) {
-    if($request->user()){
-        return view('admincategoriesform', [
-            'categories' => Category::all(),
-            'h2' => 'Agregar categoría',
-        ]);
-    } else {
-        return redirect('/login');
-    }
-});
-
-Route::post('/admin/categories/add', function ( Request $request ) {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|min:3|max:100',
-    ]);
-
-    if ($validator->fails()) {
-        return redirect('/admin/categories/add')
-            ->withErrors($validator)
-            ->withInput();
-    }
-
-    $data = request()->all();
-    Category::create($data);
-    return redirect('/admin/categories');
-});
-
-Route::get('/admin/categories/{id}/edit', function (Request $request, $id ) {
-    if($request->user()){
-        $category = Category::find($id); 
-
-        return view('admincategoriesform', [
-            'category' => $category,
-            'h2' => 'Editar categoría',
-        ]);
-    } else {
-        return redirect('/login');
-    }
-});
-
-Route::patch('/admin/categories/{id}/edit', function (Request $request , $id) {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|min:3|max:100|unique:categories,name,' . $id,
-    ]);
-
-    if ($validator->fails()) {
-        return redirect("/admin/categories/{$id}/edit")
-            ->withErrors($validator)
-            ->withInput();
-    }
-
-    $data = request()->all();
-
-    $category = Category::find($id);
-    $category->update($data);
-
-    return redirect('/admin/categories');
-});
-
-Route::delete('/admin/categories/{id}', function ($id) {
-    $categoryToDelete = Category::findOrFail($id);
-    $categoryToDelete->delete();
-    return redirect('/admin/categories');
-});
 
 
 Route::get('/admin/requests', function (Request $request) {

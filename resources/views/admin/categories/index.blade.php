@@ -16,15 +16,15 @@
                     <td>{{ $category->id}}</td>
                     <td>
                         <a href="/admin/categories/{{ $category->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <form action="/admin/categories/{{ $category->id }}" method="POST" class="deleteformbtn">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn secundary-green" onclick="return confirm('¿Estás seguro de querer eliminar esta categoría?');"><i class="fa-solid fa-trash"></i></button>
-                        </form>
+                        <button class="btn secundary-green delete-user-btn"  data-id="{{ $category->id }}" data-name="{{ $category->name }}" data-type="category"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
+
+    @include('partials.confirmationmodal')
+
+
 @endsection

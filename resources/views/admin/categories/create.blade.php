@@ -5,7 +5,7 @@
 @extends('adminlayout')
 @section('subcontent')
 
-<form action="" method="post">
+<form action="{{ request()->is('admin/categories/*/edit') ? '/admin/categories/' . optional($category)->id : '/admin/categories' }}" method="post">
     @csrf
     @if(request()->is('admin/categories/*/edit'))
         @method('PATCH')

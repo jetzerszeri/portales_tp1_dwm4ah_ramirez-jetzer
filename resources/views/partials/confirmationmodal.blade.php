@@ -39,6 +39,15 @@
                 } else if (type == 'servicio'){
                     confirmationText.innerHTML = `¿Estás seguro de querer eliminar el servicio: ${name}?`;
                     deleteForm.action = `/admin/services/${id}`;
+                } else if (type == 'category'){
+                    confirmationText.innerHTML = `¿Estás seguro de querer eliminar la categoría: ${name}?`;
+                    deleteForm.action = `/admin/categories/${id}`;
+                } else if (type == 'solicitud'){
+                    confirmationText.innerHTML = `¿Estás seguro de querer eliminar la solicitud: ${name}?`;
+                    deleteForm.action = `/admin/requests/${id}`;
+                } else if (type == 'estado'){
+                    confirmationText.innerHTML = `¿Estás seguro de querer eliminar el estado: ${name}?`;
+                    deleteForm.action = `/admin/states/${id}`;
                 } 
                 openConfirmation();
             });
