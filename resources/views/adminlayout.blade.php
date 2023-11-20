@@ -28,7 +28,7 @@
 
     <ul class="usersOptions">
         <li><a href="/admin/{{$entity}}" class="btn">Mostrar todos</a></li>
-        <li><a href="/admin/{{$entity}}/add" class="btn">Agregar uno</a></li>
+        <li><a href="/admin/{{$entity}}/create" class="btn">Agregar uno</a></li>
     </ul>
 
     @yield('subcontent')

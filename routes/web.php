@@ -18,6 +18,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\SuccessController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\UsersController;
+
 
 
 
@@ -37,112 +39,129 @@ Route::get('/', function () { return view('index');});
 Route::resource('services', ServicesController::class);
 Route::resource('requests', RequestsController::class);
 Route::resource('login', LoginController::class);
+// Route::resource('login', LoginController::class)->name('login');
 Route::resource('contact', ContactController::class);
 Route::resource('success', SuccessController::class); //only has a get method
 Route::resource('logout', LogoutController::class); //only has a get method
-Route::resource('admin', AdminController::class); //only has a get method
+// Route::resource('admin', AdminController::class); //only has a get method
+Route::resource('admin/users', UsersController::class);
+// Route::resource('admin/users', UsersController::class)->middleware('auth');
 
 
 
 
-
-
-Route::get('/admin/users', function (Request $request) {
-    $user = $request->user();
-    if($user && $user->role == 'admin'){
-        return view('adminusers', [
-            'users' => User::all(),
-            'h2' => 'Usuarios',
+Route::get('/admin', function ( Request $request ) {
+    
+    if ($request->user()){
+        $currentUser = $request->user()->name;
+        return view('admin.dashboard', [
+            'username' => $currentUser
         ]);
     } else {
-        return redirect('/admin');
+        return redirect('/login');
     }
 });
 
-Route::get('/admin/users/add', function ( Request $request ) {
-    $user = $request->user();
-    if($user && $user->role == 'admin'){
-        return view('adminusersform', [
-            'h2' => 'Agregar usuario',
-        ]);
-    } else {
-        return redirect('/admin');
-    }
-});
-
-Route::post('/admin/users/add', function ( Request $request ) {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|min:3|max:100',
-        'lastname' => 'required|min:2|max:100',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:6|max:100',
-    ]);
-
-    if ($validator->fails()) {
-        return redirect('/admin/users/add')
-            ->withErrors($validator)
-            ->withInput();
-    }
-
-    User::create([
-        'name' => $request->input('name'),
-        'lastname' => $request->input('lastname'),
-        'email' => $request->input('email'),
-        'password' => Hash::make($request->input('password')),
-        'role' => 'editor',
-    ]);
-
-    return redirect('/admin/users');
-
-});
 
 
-Route::get('/admin/users/{id}/edit', function (Request $request , $id ) {
-    $user = User::find($id); 
-    $currentUser = $request->user();
-    if($currentUser && $currentUser->role == 'admin'){
-        return view('adminusersform', [
-            'user' => $user,
-            'h2' => 'Editar usuario',
-        ]);
-    } else {
-        return redirect('/admin');
-    }
-});
 
-Route::patch('/admin/users/{id}/edit', function ( Request $request , $id ) {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|min:3|max:100',
-        'lastname' => 'required|min:2|max:100',
-        'email' => 'required|email|unique:users,email,' . $id,
-        'password' => 'required|min:6|max:100',
-    ]);
 
-    if ($validator->fails()) {
-        return redirect("/admin/users/{$id}/edit")
-            ->withErrors($validator)
-            ->withInput();
-    };
+// Route::get('/admin/users', function (Request $request) {
+//     $user = $request->user();
+//     if($user && $user->role == 'admin'){
+//         return view('adminusers', [
+//             'users' => User::all(),
+//             'h2' => 'Usuarios',
+//         ]);
+//     } else {
+//         return redirect('/admin');
+//     }
+// });
 
-    $data = [
-        'name' => $request->input('name'),
-        'lastname' => $request->input('lastname'),
-        'email' => $request->input('email'),
-        'password' => Hash::make($request->input('password')),
-    ];
+// Route::get('/admin/users/add', function ( Request $request ) {
+//     $user = $request->user();
+//     if($user && $user->role == 'admin'){
+//         return view('adminusersform', [
+//             'h2' => 'Agregar usuario',
+//         ]);
+//     } else {
+//         return redirect('/admin');
+//     }
+// });
 
-    $user = User::find($id); 
-    $user->update($data);
+// Route::post('/admin/users/add', function ( Request $request ) {
+//     $validator = Validator::make($request->all(), [
+//         'name' => 'required|min:3|max:100',
+//         'lastname' => 'required|min:2|max:100',
+//         'email' => 'required|email|unique:users,email',
+//         'password' => 'required|min:6|max:100',
+//     ]);
 
-    return redirect('/admin/users');
+//     if ($validator->fails()) {
+//         return redirect('/admin/users/add')
+//             ->withErrors($validator)
+//             ->withInput();
+//     }
 
-});
+//     User::create([
+//         'name' => $request->input('name'),
+//         'lastname' => $request->input('lastname'),
+//         'email' => $request->input('email'),
+//         'password' => Hash::make($request->input('password')),
+//         'role' => 'editor',
+//     ]);
 
-Route::delete('/admin/users/{id}', function ($id) {
-    $userToDelete = User::findOrFail($id);
-    $userToDelete->delete();
-    return redirect('/admin/users');
-});
+//     return redirect('/admin/users');
+
+// });
+
+
+// Route::get('/admin/users/{id}/edit', function (Request $request , $id ) {
+//     $user = User::find($id); 
+//     $currentUser = $request->user();
+//     if($currentUser && $currentUser->role == 'admin'){
+//         return view('adminusersform', [
+//             'user' => $user,
+//             'h2' => 'Editar usuario',
+//         ]);
+//     } else {
+//         return redirect('/admin');
+//     }
+// });
+
+// Route::patch('/admin/users/{id}/edit', function ( Request $request , $id ) {
+//     $validator = Validator::make($request->all(), [
+//         'name' => 'required|min:3|max:100',
+//         'lastname' => 'required|min:2|max:100',
+//         'email' => 'required|email|unique:users,email,' . $id,
+//         'password' => 'required|min:6|max:100',
+//     ]);
+
+//     if ($validator->fails()) {
+//         return redirect("/admin/users/{$id}/edit")
+//             ->withErrors($validator)
+//             ->withInput();
+//     };
+
+//     $data = [
+//         'name' => $request->input('name'),
+//         'lastname' => $request->input('lastname'),
+//         'email' => $request->input('email'),
+//         'password' => Hash::make($request->input('password')),
+//     ];
+
+//     $user = User::find($id); 
+//     $user->update($data);
+
+//     return redirect('/admin/users');
+
+// });
+
+// Route::delete('/admin/users/{id}', function ($id) {
+//     $userToDelete = User::findOrFail($id);
+//     $userToDelete->delete();
+//     return redirect('/admin/users');
+// });
 
 
 
