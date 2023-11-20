@@ -34,10 +34,10 @@
                 let type = button.dataset.type;
 
                 if (type == 'usuario'){
-                    confirmationText.innerHTML = `¿Estás seguro de querer eliminar el usuario ${name}?`;
+                    confirmationText.innerHTML = `¿Estás seguro de querer eliminar el usuario: ${name}?`;
                     deleteForm.action = `/admin/users/${id}`;
                 } else if (type == 'servicio'){
-                    confirmationText.innerHTML = `¿Estás seguro de querer eliminar el servicio ${name}?`;
+                    confirmationText.innerHTML = `¿Estás seguro de querer eliminar el servicio: ${name}?`;
                     deleteForm.action = `/admin/services/${id}`;
                 } 
                 openConfirmation();

@@ -5,7 +5,7 @@
 @extends('adminlayout')
 @section('subcontent')
 
-<form action="" method="post">
+<form action="{{ request()->is('admin/services/*/edit') ? '/admin/services/' . optional($service)->id : '/admin/services' }}" method="post">
     @csrf
     @if(request()->is('admin/services/*/edit'))
         @method('PATCH')

@@ -20,15 +20,14 @@
                     <td>{{ $service->img}}</td>
                     <td>
                         <a href="/admin/services/{{ $service->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <form action="/admin/services/{{ $service->id }}" method="POST" class="deleteformbtn">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn secundary-green" onclick="return confirm('¿Estás seguro de querer eliminar este servicio?');"><i class="fa-solid fa-trash"></i></button>
-                        </form>
+                        <button class="btn secundary-green delete-user-btn"  data-id="{{ $service->id }}" data-name="{{ $service->name }}" data-type="servicio"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
+
+    @include('partials.confirmationmodal')
+
 @endsection
