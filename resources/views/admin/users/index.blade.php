@@ -22,7 +22,7 @@
                         <a href="/admin/users/{{ $user->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
                         
                         @if($user->role !== 'admin')
-                        <button class="btn secundary-green delete-user-btn"  data-user-id="{{ $user->id }}" data-user-name="{{ $user->email }}"><i class="fa-solid fa-trash"></i></button>
+                        <button class="btn secundary-green delete-user-btn"  data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-type="usuario"><i class="fa-solid fa-trash"></i></button>
                         @endif
                     </td>
                 </tr>

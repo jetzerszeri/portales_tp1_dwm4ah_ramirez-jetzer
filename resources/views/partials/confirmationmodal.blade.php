@@ -29,11 +29,17 @@
         deleteButtons.forEach(function(button) {
             button.addEventListener('click', function() {
                 let confirmationText = document.querySelector('#confirmationText');
-                let userId = button.dataset.userId;
-                let userName = button.dataset.userName;
+                let id = button.dataset.id;
+                let name = button.dataset.name;
+                let type = button.dataset.type;
 
-                confirmationText.innerHTML = `¿Estás seguro de querer eliminar el usuario ${userName}?`;
-                deleteForm.action = `/admin/users/${userId}`;
+                if (type == 'usuario'){
+                    confirmationText.innerHTML = `¿Estás seguro de querer eliminar el usuario ${name}?`;
+                    deleteForm.action = `/admin/users/${id}`;
+                } else if (type == 'servicio'){
+                    confirmationText.innerHTML = `¿Estás seguro de querer eliminar el servicio ${name}?`;
+                    deleteForm.action = `/admin/services/${id}`;
+                } 
                 openConfirmation();
             });
         });
