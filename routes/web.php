@@ -38,15 +38,13 @@ Route::get('/', function () { return view('index');});
 
 Route::resource('services', ServicesController::class);
 Route::resource('requests', RequestsController::class);
-Route::resource('login', LoginController::class);
-// Route::resource('login', LoginController::class)->name('login');
+Route::resource('login', LoginController::class)->names([ 'index' => 'login']);
 Route::resource('contact', ContactController::class);
 Route::resource('success', SuccessController::class); //only has a get method
 Route::resource('logout', LogoutController::class); //only has a get method
 // Route::resource('admin', AdminController::class); //only has a get method
-Route::resource('admin/users', UsersController::class);
-// Route::resource('admin/users', UsersController::class)->middleware('auth');
-
+Route::resource('admin/users', UsersController::class)->middleware('auth');
+Route::resource('admin/services', AdminServicesController::class)->middleware('auth');
 
 
 
@@ -66,7 +64,6 @@ Route::get('/admin', function ( Request $request ) {
 
 
 
-Route::get('/admin/services', function (Request $request) {
     if($request->user()){
         return view('adminservices', [
             'services' => Service::with('categoryRelation')->get(),
