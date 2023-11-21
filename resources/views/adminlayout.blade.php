@@ -9,6 +9,7 @@
             'users' => 'Usuarios',
             'categories' => 'Categorías',
             'requests' => 'Solicitudes',
+            'states' => 'Estados',
         ];
         $currentEntityName = $entitiesMap[$entity] ?? 'Dashboard';
     @endphp
