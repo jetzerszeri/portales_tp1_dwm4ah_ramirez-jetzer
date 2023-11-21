@@ -17,11 +17,11 @@
                     <td>{{ $user->name}}</td>
                     <td>{{ $user->lastname}}</td>
                     <td>{{ $user->email}}</td>
-                    <td>{{ $user->role}}</td>
+                    <td>{{ $user->role->name}}</td>
                     <td>
                         <a href="/admin/users/{{ $user->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
                         
-                        @if($user->role !== 'admin')
+                        @if($user->role->name !== 'admin')
                         <button class="btn secundary-green delete-user-btn"  data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-type="usuario"><i class="fa-solid fa-trash"></i></button>
                         @endif
                     </td>

@@ -13,7 +13,7 @@
     <p>Bienvenido, {{$username}}</p>
 
     <ul class="admindoptions">
-        @if(Auth::user()->role === 'admin')
+        @if(Auth::user()->role->name === 'admin')
         <li>
             <a href="/admin/users"><i class="fa-solid fa-users"></i><span>Usuarios</span></a>
         </li>

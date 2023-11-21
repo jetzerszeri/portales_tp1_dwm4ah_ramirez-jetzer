@@ -13,7 +13,7 @@ class CreateUser extends FormRequest
     public function authorize(): bool
     {
         // dd(auth()->user());
-        return Auth::user()->role == 'admin';
+        return Auth::user()->role->name == 'admin';
     }
 
     /**

@@ -17,7 +17,7 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        if($user->role == 'admin'){
+        if($user->role->name == 'admin'){
             return view('admin.users.index', [
                 'users' => User::all(),
                 'h2' => 'Usuarios',
@@ -33,7 +33,7 @@ class UsersController extends Controller
     public function create( Request $request )
     {
         $user = $request->user();
-        if($user->role == 'admin'){
+        if($user->role->name == 'admin'){
             return view('admin.users.create', [
                 'h2' => 'Agregar usuario',
             ]);
@@ -52,7 +52,7 @@ class UsersController extends Controller
             'lastname' => $request->input('lastname'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            'role' => 'editor',
+            'role' => '2',
         ]);
 
         return redirect('/admin/users');
@@ -72,7 +72,7 @@ class UsersController extends Controller
     public function edit(User $user, Request $request)
     {
         $currentUser = $request->user();
-        if($currentUser->role == 'admin'){
+        if($currentUser && $currentUser->role->name == 'admin'){
             return view('admin.users.create', [
                 'user' => $user,
                 'h2' => 'Editar usuario',

@@ -13,7 +13,7 @@ class UpdateUser extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->role == 'admin';
+        return Auth::user()->role->name == 'admin';
     }
 
     /**
