@@ -15,7 +15,6 @@ use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\ServicesController as AdminServicesController;
@@ -43,8 +42,6 @@ Route::resource('services', ServicesController::class);
 Route::resource('requests', RequestsController::class);
 Route::resource('login', LoginController::class)->names([ 'index' => 'login']);
 Route::resource('contact', ContactController::class);
-Route::resource('logout', LogoutController::class); //only has a get method
-// Route::resource('admin', AdminController::class); //only has a get method
 Route::resource('admin/users', UsersController::class)->middleware('auth');
 Route::resource('admin/services', AdminServicesController::class)->middleware('auth');
 Route::resource('admin/categories', CategoriesController::class)->middleware('auth');
@@ -54,15 +51,15 @@ Route::resource('admin/states', StatesController::class)->middleware('auth');
 
 
 Route::get('/admin', function ( Request $request ) {
-    
-    if ($request->user()){
         $currentUser = $request->user()->name;
         return view('admin.dashboard', [
             'username' => $currentUser
         ]);
-    } else {
-        return redirect('/login');
-    }
-});
+})->middleware('auth');
 
+
+Route::get('/logout', function(){
+    Auth::logout();
+    return redirect('/login');
+});
 
