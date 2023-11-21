@@ -13,13 +13,12 @@ class Service extends Model
 
     protected $fillable = [
         'name',
-        'category',
+        'category_id',
         'description',
         'img',
-        // 'ip_address' => request()->ip(),
     ];
 
-    public function categoryRelation()
+    public function category()
     {
         return $this->belongsTo(Category::class, 'category', 'id');
     }
