@@ -32,7 +32,7 @@ class RequestsController extends Controller
         // return $request->all();
         $data = request()->all();
         RequestModel::create($data);
-        return redirect('/success');
+        return redirect('/requests/success');
     }
 
     /**
@@ -40,7 +40,7 @@ class RequestsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('success');
     }
 
     /**

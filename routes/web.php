@@ -15,7 +15,6 @@ use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\SuccessController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\UsersController;
@@ -44,7 +43,6 @@ Route::resource('services', ServicesController::class);
 Route::resource('requests', RequestsController::class);
 Route::resource('login', LoginController::class)->names([ 'index' => 'login']);
 Route::resource('contact', ContactController::class);
-Route::resource('success', SuccessController::class); //only has a get method
 Route::resource('logout', LogoutController::class); //only has a get method
 // Route::resource('admin', AdminController::class); //only has a get method
 Route::resource('admin/users', UsersController::class)->middleware('auth');
