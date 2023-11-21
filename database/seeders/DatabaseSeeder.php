@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             RequestsSeeder::class,
             StatesSeeder::class,
+            RolesSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
