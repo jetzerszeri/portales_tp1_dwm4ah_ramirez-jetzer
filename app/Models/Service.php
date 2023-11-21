@@ -20,7 +20,7 @@ class Service extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category', 'id');
+        return $this->belongsTo(Category::class);
     }
     
 }

@@ -15,7 +15,7 @@
             @foreach ($services as $service)
                 <tr>
                     <td>{{ $service->name}}</td>
-                    <td>{{ $service->categoryRelation->name }}</td>
+                    <td>{{ $service->category->name }}</td>
                     <td>{{ $service->description}}</td>
                     <td>{{ $service->img}}</td>
                     <td>

@@ -17,12 +17,12 @@
     </div>
     <div>
         <label for="category">Categoría</label>
-        <select name="category">
+        <select name="category_id">
             @foreach($categoriesList as $category)
                 <option value="{{ $category->id }}" {{ old('category', optional($service)->category) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
             @endforeach
         </select>
-        {{ $errors->first('category') }}
+        {{ $errors->first('category_id') }}
     </div>
     <div>
         <label for="description">Descripción</label>

@@ -18,8 +18,8 @@ class ServicesController extends Controller
         $categoryId = $request->input('cat');
 
         $services = $categoryId 
-                    ? Service::with('categoryRelation')->where('category', $categoryId)->get() 
-                    : Service::with('categoryRelation')->get();
+                    ? Service::with('category')->where('category_id', $categoryId)->get() 
+                    : Service::with('category')->get();
     
         return view('services', [
             'services' => $services,

@@ -33,7 +33,7 @@
                     <div>
                         <div>
                             <h2>{{ $service->name}}</h2>
-                            <p>{{ $service->categoryRelation->name }}</p>
+                            <p>{{ $service->category->name }}</p>
                         </div>
                         
                         <a href="/services/{{ $service->id}}" class="btn secundary-green">Ver detalles</a>

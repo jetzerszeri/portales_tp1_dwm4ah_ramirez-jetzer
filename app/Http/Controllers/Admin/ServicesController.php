@@ -16,7 +16,7 @@ class ServicesController extends Controller
     public function index(Request $request)
     {
             return view('admin.services.index', [
-                'services' => Service::with('categoryRelation')->get(),
+                'services' => Service::with('category')->get(),
                 'h2' => 'Servicios',
             ]);
     }

@@ -24,7 +24,7 @@ class CreateService extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:100',
-            'category' => 'required',
+            'category_id' => 'required',
             'description' => 'required|min:10|max:1000',
             'img' => 'required',
         ];
@@ -37,7 +37,7 @@ class CreateService extends FormRequest
             'name.required' => 'El nombre es obligatorio.',
             'name.min' => 'El nombre debe tener al menos :min caracteres.',
             'name.max' => 'El nombre no debe tener más de :max caracteres.',
-            'category.required' => 'La categoría es obligatoria.',
+            'category_id.required' => 'La categoría es obligatoria.',
             'description.required' => 'La descripción es obligatoria.',
             'description.min' => 'La descripción debe tener al menos :min caracteres.',
             'description.max' => 'La descripción no debe tener más de :max caracteres.',
