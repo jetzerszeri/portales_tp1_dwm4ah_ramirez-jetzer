@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\ServicesController as AdminServicesController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\RequestsController as AdminRequestsController;
+use App\Http\Controllers\Admin\StatesController;
 
 
 
@@ -50,6 +51,7 @@ Route::resource('admin/users', UsersController::class)->middleware('auth');
 Route::resource('admin/services', AdminServicesController::class)->middleware('auth');
 Route::resource('admin/categories', CategoriesController::class)->middleware('auth');
 Route::resource('admin/requests', AdminRequestsController::class)->middleware('auth');
+Route::resource('admin/states', StatesController::class)->middleware('auth');
 
 
 
@@ -66,86 +68,3 @@ Route::get('/admin', function ( Request $request ) {
 });
 
 
-
-
-
-
-
-Route::get('/admin/states', function (Request $request) {
-
-    if($request->user() ){
-        return view('adminstates', [
-            'states' => State::all(),
-            'h2' => 'Estados',
-        ]);
-    } else {
-        return redirect('/login');
-    }
-});
-
-Route::get('/admin/states/add', function (Request $request) {
-    if($request->user()){
-        return view('adminstatesform', [
-            // 'states' => State::all(),
-            'h2' => 'Agregar estado',
-        ]);
-    } else {
-        return redirect('/login');
-    }
-});
-
-Route::post('/admin/states/add', function ( Request $request ) {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|min:3|max:100',
-        'abbreviation' => 'required|min:2|max:2',
-    ]);
-
-    if ($validator->fails()) {
-        return redirect('/admin/states/add')
-            ->withErrors($validator)
-            ->withInput();
-    }
-
-    $data = request()->all();
-    State::create($data);
-    return redirect('/admin/states');
-});
-
-Route::get('/admin/states/{id}/edit', function (Request $request, $id ) {
-    if($request->user()){
-        $state = State::find($id); 
-
-        return view('adminstatesform', [
-            'state' => $state,
-            'h2' => 'Editar estado',
-        ]);
-    } else {
-        return redirect('/login');
-    }
-});
-
-Route::patch('/admin/states/{id}/edit', function (Request $request , $id) {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|min:3|max:100',
-        'abbreviation' => 'required|min:2|max:2|unique:states,abbreviation,' . $id,
-    ]);
-
-    if ($validator->fails()) {
-        return redirect("/admin/states/{$id}/edit")
-            ->withErrors($validator)
-            ->withInput();
-    }
-
-    $data = request()->all();
-
-    $state = State::find($id);
-    $state->update($data);
-
-    return redirect('/admin/states');
-});
-
-Route::delete('/admin/states/{id}', function ($id) {
-    $stateToDelete = State::findOrFail($id);
-    $stateToDelete->delete();
-    return redirect('/admin/states');
-});
