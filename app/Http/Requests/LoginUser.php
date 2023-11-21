@@ -26,4 +26,14 @@ class LoginUser extends FormRequest
             'password' => 'required|min:6',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'El email es requerido.',
+            'email.email' => 'El email debe ser válido.',
+            'password.required' => 'La contraseña es requerida.',
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
+        ];
+    }
 }

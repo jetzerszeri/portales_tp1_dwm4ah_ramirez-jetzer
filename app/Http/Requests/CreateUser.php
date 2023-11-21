@@ -30,4 +30,22 @@ class CreateUser extends FormRequest
             'password' => 'required|min:6|max:100',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.min' => 'El nombre debe tener al menos :min caracteres.',
+            'name.max' => 'El nombre no debe tener más de :max caracteres.',
+            'lastname.required' => 'El apellido es obligatorio.',
+            'lastname.min' => 'El apellido debe tener al menos :min caracteres.',
+            'lastname.max' => 'El apellido no debe tener más de :max caracteres.',
+            'email.required' => 'El email es obligatorio.',
+            'email.email' => 'El email debe ser válido.',
+            'email.unique' => 'Ya existe un usuario con ese email.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
+            'password.max' => 'La contraseña no debe tener más de :max caracteres.',
+        ];
+    }
 }
