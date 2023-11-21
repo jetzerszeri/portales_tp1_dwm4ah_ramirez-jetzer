@@ -15,4 +15,9 @@ class State extends Model
         'name',
         'abbreviation',
     ];
+
+    public function requests()
+    {
+        return $this->hasMany(Request::class);
+    }
 }
