@@ -11,30 +11,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\State;
 
-use App\Http\Controllers\ServicesController;
-use App\Http\Controllers\RequestsController;
+use App\Http\Controllers\Customer\ServicesController;
+use App\Http\Controllers\Customer\RequestsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\ServicesController as AdminServicesController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\RequestsController as AdminRequestsController;
 use App\Http\Controllers\Admin\StatesController;
 
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () { return view('index');});
 
@@ -49,7 +35,6 @@ Route::resource('admin/requests', AdminRequestsController::class)->middleware('a
 Route::resource('admin/states', StatesController::class)->middleware('auth');
 
 
-
 Route::get('/admin', function ( Request $request ) {
         $currentUser = $request->user()->name;
         return view('admin.dashboard', [
@@ -62,4 +47,3 @@ Route::get('/logout', function(){
     Auth::logout();
     return redirect('/login');
 });
-

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateRequest; // importo el  middleware que acabo de crear
 use App\Models\Request as RequestModel;
@@ -29,7 +30,6 @@ class RequestsController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        // return $request->all();
         $data = request()->all();
         RequestModel::create($data);
         return redirect('/requests/success');
