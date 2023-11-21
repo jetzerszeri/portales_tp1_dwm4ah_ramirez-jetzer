@@ -22,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('requests', function (Blueprint $table) {
+            $table->text('notes')->nullable()->change();
+        });
+        
     }
 };
