@@ -35,6 +35,7 @@ class UpdateUser extends FormRequest
                 Rule::unique('users', 'email')->ignore($userId),
             ],
             'password' => 'required|min:6|max:100',
+            'role_id' => 'required',
         ];
     }
 
@@ -53,6 +54,7 @@ class UpdateUser extends FormRequest
             'password.required' => 'La contraseña es obligatoria.',
             'password.min' => 'La contraseña debe tener al menos :min caracteres.',
             'password.max' => 'La contraseña no debe tener más de :max caracteres.',
+            'role_id.required' => 'El rol es obligatorio.',
         ];
     }
     

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateUser;
 use App\Http\Requests\UpdateUser;
 use App\Models\User;
+use App\Models\Role;
 
 class UsersController extends Controller
 {
@@ -33,9 +34,11 @@ class UsersController extends Controller
     public function create( Request $request )
     {
         $user = $request->user();
+        $roleList = Role::all();
         if($user->role->name == 'admin'){
             return view('admin.users.create', [
                 'h2' => 'Agregar usuario',
+                'roleList' => $roleList,
             ]);
         } else {
             return redirect('/admin');
@@ -52,7 +55,7 @@ class UsersController extends Controller
             'lastname' => $request->input('lastname'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            'role' => '2',
+            'role_id' => $request->input('role_id'),
         ]);
 
         return redirect('/admin/users');
@@ -72,10 +75,12 @@ class UsersController extends Controller
     public function edit(User $user, Request $request)
     {
         $currentUser = $request->user();
+        $roleList = Role::all();
         if($currentUser && $currentUser->role->name == 'admin'){
             return view('admin.users.create', [
                 'user' => $user,
                 'h2' => 'Editar usuario',
+                'roleList' => $roleList,
             ]);
         } else {
             return redirect('/admin');
@@ -92,6 +97,7 @@ class UsersController extends Controller
             'lastname' => $request->input('lastname'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
+            'role_id' => $request->input('role_id'),
         ];
 
         $user->update($data);

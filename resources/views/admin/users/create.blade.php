@@ -20,6 +20,17 @@
         <input type="text" placeholder="ej. Alvarenga" name="lastname" value="{{ old('lastname', optional($user)->lastname) }}">
         <p>{{ $errors->first('lastname') }}</p>
     </div>
+
+    <div>
+        <label for="role">Categoría</label>
+        <select name="role_id">
+            @foreach($roleList as $role)
+                <option value="{{ $role->id }}" {{ old('role', optional($user)->role) == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
+            @endforeach
+        </select>
+        {{ $errors->first('role_id') }}
+    </div>
+
     <div>
         <label for="email">Correo Electrónico</label>
         <input type="email" placeholder="ejemplo@ejemplo.com" name="email" value="{{ old('email', optional($user)->email) }}">
