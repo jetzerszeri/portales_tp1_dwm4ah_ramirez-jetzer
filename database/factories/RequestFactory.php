@@ -26,7 +26,7 @@ class RequestFactory extends Factory
             'city' => fake()->city(),
             'state_id' => fake()->numberBetween(1, 2),
             'zip_code' => $this->faker->numerify('#####'),
-            'service_id' => Service::factory(),
+            'service_id' => Service::inRandomOrder()->first()->id,
             'service_date' => fake()->date(),
             'notes' => fake()->sentence(),
         ];

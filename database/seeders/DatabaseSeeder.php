@@ -19,30 +19,19 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::truncate();
-        // Category::truncate();
-        // Service::truncate();
-        // Role::truncate();
-        // Request::truncate();
-        // State::truncate();
 
-        // \App\Models\Category::factory(2)->create();
-        
         $this->call([
             CategoriesSeeder::class,
-            // ServicesSeeder::class,
             RolesSeeder::class,
             UsersSeeder::class,
-            // RequestsSeeder::class,
             StatesSeeder::class,
+            ServicesSeeder::class,
+            RequestsSeeder::class,
         ]);
         
         Service::factory(10)->create();
         User::factory(10)->create();
-        Request::factory(6)->create();
+        Request::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }
