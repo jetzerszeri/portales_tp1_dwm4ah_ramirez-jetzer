@@ -32,13 +32,16 @@
                     <td>{{ $request->notes}}</td>
                     <td>
                         <a href="/admin/requests/{{ $request->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
-                        
-                        <button class="btn secundary-green delete-user-btn"  data-id="{{ $request->id }}" data-name="{{ $request->name }}" data-type="solicitud"><i class="fa-solid fa-trash"></i></button>
+
+                        <form action="/admin/requests/{{ $request->id}}" method="POST" class="deleteformbtn">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn secundary-green"><i class="fa-solid fa-trash"></i></button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
-    @include('partials.confirmationmodal')
 @endsection

@@ -16,7 +16,12 @@
                     <td>{{ $state->abbreviation}}</td>
                     <td>
                         <a href="/admin/states/{{ $state->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <button class="btn secundary-green delete-user-btn"  data-id="{{ $state->id }}" data-name="{{ $state->name }}" data-type="estado"><i class="fa-solid fa-trash"></i></button>
+
+                        <form action="/admin/states/{{ $state->id}}" method="POST" class="deleteformbtn">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn secundary-green"><i class="fa-solid fa-trash"></i></button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -24,6 +29,5 @@
         </table>
     </div>
 
-    @include('partials.confirmationmodal')
     
 @endsection

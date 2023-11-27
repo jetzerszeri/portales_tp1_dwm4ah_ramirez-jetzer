@@ -22,7 +22,11 @@
                         <a href="/admin/users/{{ $user->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
                         
                         @if($user->role->name !== 'admin')
-                        <button class="btn secundary-green delete-user-btn"  data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-type="usuario"><i class="fa-solid fa-trash"></i></button>
+                        <form action="/admin/users/{{ $user->id }}" method="POST" class="deleteformbtn">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn secundary-green"><i class="fa-solid fa-trash"></i></button>
+                        </form>
                         @endif
                     </td>
                 </tr>
@@ -31,6 +35,5 @@
         </table>
     </div>
 
-    @include('partials.confirmationmodal')
 
 @endsection
