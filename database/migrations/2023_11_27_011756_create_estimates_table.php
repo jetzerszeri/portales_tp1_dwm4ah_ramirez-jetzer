@@ -13,14 +13,11 @@ return new class extends Migration
     {
         Schema::create('estimates', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('request_id');
+            $table->foreignId('request_id')->constrained('requests');
             $table->string('notes', 1000);
             $table->integer('price');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('request_id')->references('id')->on('requests');
-
         });
     }
 

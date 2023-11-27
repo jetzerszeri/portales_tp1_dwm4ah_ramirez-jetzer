@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->tinyInteger('category');
+            $table->foreignId('category_id')->constrained('categories'); // Reemplazar category por category_id como clave foránea
             $table->string('description', 1000);
             $table->string('img', 100);
             $table->timestamps();
-            $table->softDeletes(); //oculta registros sin perder info
+            $table->softDeletes(); // Oculta registros sin perder info
         });
     }
 

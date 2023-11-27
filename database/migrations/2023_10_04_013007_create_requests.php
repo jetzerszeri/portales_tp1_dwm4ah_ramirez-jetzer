@@ -20,13 +20,11 @@ return new class extends Migration
             $table->string('city', 30);
             $table->tinyInteger('state_id');
             $table->string('zip_code', 5);
-            $table->unsignedBigInteger('service_id');
+            $table->foreignId('service_id')->constrained('services');
             $table->date('service_date');
             $table->string('notes', 1000);
             $table->timestamps();
             $table->softDeletes();
-            
-            $table->foreign('service_id')->references('id')->on('services');
         });
     }
 
