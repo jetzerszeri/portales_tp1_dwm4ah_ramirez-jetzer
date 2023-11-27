@@ -17,7 +17,7 @@ class EstimatesController extends Controller
     public function index(Request $request)
     {
 
-        // return $request;
+        return redirect('/admin/requests');
     }
 
     /**
@@ -27,10 +27,14 @@ class EstimatesController extends Controller
     {
         $current_request = RequestModel::find($request->input('req'));
         // return $current_request;
-        return view('admin.estimates.form', [
-            'h2' => 'Estimados',
-            'request_info' => $current_request,
-        ]);
+        if ($current_request){
+            return view('admin.estimates.form', [
+                'h2' => 'Estimados',
+                'request_info' => $current_request,
+            ]);
+        } else {
+            return redirect('/admin/requests');
+        }
 
     }
 
@@ -46,49 +50,36 @@ class EstimatesController extends Controller
     
         // Encuentra el RequestModel y actualízalo con el ID del Estimate
         $requestModel = RequestModel::find($requestId);
-        
+
         if ($requestModel) {
             $requestModel->estimate_id = $estimate->id;
             $requestModel->save();
         }
-
         return redirect('/admin/requests');
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Request $request)
-    {
-        // return $request;
-        // return view('admin.estimates.form', [
-        //     'h2' => 'Estimados',
-        //     'request_info' => $request,
-        // ]);
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, Estimate $estimate)
     {
-        //
+        $current_request = RequestModel::find($request->input('req'));
+        return view('admin.estimates.form', [
+            'h2' => 'Estimados',
+            'request_info' => $current_request,
+            'estimate' => $estimate,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CreateEstimate $request, Estimate $estimate)
     {
-        //
+        $estimate->update($request->all());
+        return redirect('/admin/requests');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
