@@ -22,6 +22,7 @@ class Request extends Model
         'service_id',
         'service_date',
         'notes',
+        'estimate_id'
     ];
 
     public function service()
@@ -32,5 +33,10 @@ class Request extends Model
     public function state()
     {
         return $this->belongsTo(State::class, 'state_id', 'id');
+    }
+
+    public function estimate()
+    {
+        return $this->hasOne(Estimate::class);
     }
 }
