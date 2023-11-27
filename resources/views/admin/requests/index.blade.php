@@ -14,6 +14,7 @@
                     <th>Tipo de Servicio</th>
                     <th>Fecha del servicio</th>
                     <th>Notas</th>
+                    <th>Estimado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -30,6 +31,9 @@
                     <td>{{ $request->service->name}}</td>
                     <td>{{ $request->service_date}}</td>
                     <td>{{ $request->notes}}</td>
+
+                    <td>Pendiente</td>
+                    
                     <td>
                         <a href="/admin/requests/{{ $request->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
 
@@ -38,6 +42,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn secundary-green"><i class="fa-solid fa-trash"></i></button>
                         </form>
+                        <a href="#"class="btn secundary-green">Generar estimado</a>
                     </td>
                 </tr>
             @endforeach
