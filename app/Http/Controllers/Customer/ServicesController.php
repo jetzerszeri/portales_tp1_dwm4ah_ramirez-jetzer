@@ -51,7 +51,7 @@ class ServicesController extends Controller
         $servicesList = Service::all();
         $statesList = State::all();
 
-        return view('servicio', [
+        return view('service', [
             'service' => $service,
             'servicesList' => $servicesList,
             'h2' => '¡Obtener estimado gratis!',
