@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\RequestsController as AdminRequestsController;
 use App\Http\Controllers\Admin\StatesController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\EstimatesController;
 
 
 
@@ -30,6 +31,7 @@ Route::resource('admin/services', AdminServicesController::class)->middleware('a
 Route::resource('admin/categories', CategoriesController::class)->middleware('auth');
 Route::resource('admin/requests', AdminRequestsController::class)->middleware('auth');
 Route::resource('admin/states', StatesController::class)->middleware('auth');
+Route::resource('admin/estimates', EstimatesController::class)->middleware('auth');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/admin', [AuthController::class, 'admin'])->middleware('auth');

@@ -963,6 +963,33 @@ input + p, select + p, textarea + p{
 
 }
 
+
+
+/* estimados */
+.estimateHeader{
+    color: var(--color-darkgray);
+    margin-bottom: 30px;
+}
+
+.estimateHeader h3{
+    margin-bottom: 0;
+}
+
+.estimateHeader p{
+    margin: 0;
+}
+
+.estimateHeader p span{
+    font-weight: 600;
+}
+
+.estimateHeader h3 + p{
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+
+
 @media (min-width: 650px){
 
     .homeservices > div > div {

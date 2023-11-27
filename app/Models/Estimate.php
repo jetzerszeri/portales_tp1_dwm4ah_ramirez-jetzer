@@ -10,7 +10,6 @@ class Estimate extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'request_id',
         'notes',
         'price',

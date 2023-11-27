@@ -32,7 +32,15 @@
                     <td>{{ $request->service_date}}</td>
                     <td>{{ $request->notes}}</td>
 
-                    <td>Pendiente</td>
+                    <td>
+                        @if ($request->estimate)
+                            <a href="/admin/estimates/{{ $request->estimate->id}}/edit?req={{ $request->id}}" class="btn secundary-green">Ver estimado</a>
+                        @else
+                            pendiente
+                        @endif
+
+
+                    </td>
                     
                     <td>
                         <a href="/admin/requests/{{ $request->id}}/edit" class="btn secundary-green"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -42,7 +50,10 @@
                             @method('DELETE')
                             <button type="submit" class="btn secundary-green"><i class="fa-solid fa-trash"></i></button>
                         </form>
-                        <a href="#"class="btn secundary-green">Generar estimado</a>
+
+                        @if(!$request->estimate)
+                        <a href="/admin/estimates/create?req={{ $request->id}}"class="btn secundary-green">Generar estimado</a>
+                        @endif
                     </td>
                 </tr>
             @endforeach
