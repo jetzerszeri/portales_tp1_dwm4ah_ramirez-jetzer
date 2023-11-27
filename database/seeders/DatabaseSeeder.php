@@ -33,11 +33,12 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             UsersSeeder::class,
             // RequestsSeeder::class,
-            // StatesSeeder::class,
+            StatesSeeder::class,
         ]);
         
-        \App\Models\Service::factory(5)->create();
-        \App\Models\User::factory(3)->create();
+        Service::factory(10)->create();
+        User::factory(10)->create();
+        Request::factory(6)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
