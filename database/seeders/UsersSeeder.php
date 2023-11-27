@@ -18,14 +18,14 @@ class UsersSeeder extends Seeder
             'name' => 'Jake',
             'lastname' => 'Ze',
             'email' => 'admin@gbygpcs.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('123456'),
             'role_id' => '1',
         ]);
         DB::table('users')->insert([
             'name' => 'Roberto',
             'lastname' => 'Alvarenga',
             'email' => 'editor1@gbygpcs.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('123456'),
             'role_id' => '2',
         ]);
     }
