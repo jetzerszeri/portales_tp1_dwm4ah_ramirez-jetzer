@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateRequest; // importo el  middleware que acabo de crear
 use App\Models\Request as RequestModel;
+use App\Models\State;
+use App\Models\Service;
 
 class RequestsController extends Controller
 {
@@ -14,7 +16,14 @@ class RequestsController extends Controller
      */
     public function index()
     {
-        //
+        $servicesList = Service::all();
+        $statesList = State::all();
+        return view('contact', [
+            'servicesList' => $servicesList,
+            'h2' => '¡Compartenos tu inquietud!',
+            'label_nota' => 'Coméntanos, ¿cómo podemos ayudarte?',
+            'statesList' => $statesList, 
+        ]);
     }
 
     /**
