@@ -12,12 +12,12 @@
     @endif
     <div>
         <label for="name">Nombre del servicio</label>
-        <input type="text" placeholder="Ingresa el nombre del servicio" name="name" value="{{ old('name', optional($service)->name) }}">
+        <input type="text" placeholder="Ingresa el nombre del servicio" name="name" value="{{ old('name', optional($service)->name) }}" id="name">
         <p>{{ $errors->first('name') }}</p>
     </div>
     <div>
-        <label for="category">Categoría</label>
-        <select name="category_id">
+        <label for="category_id">Categoría</label>
+        <select name="category_id" id="category_id">
             @foreach($categoriesList as $category)
                 <option value="{{ $category->id }}" {{ old('category', optional($service)->category) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
             @endforeach
@@ -26,13 +26,13 @@
     </div>
     <div>
         <label for="description">Descripción</label>
-        <textarea name="description" cols="30" rows="10">{{ old('description', optional($service)->description)}}</textarea>
+        <textarea name="description" cols="30" rows="10" id="description">{{ old('description', optional($service)->description)}}</textarea>
         <p>{{ $errors->first('description') }}</p>
     </div>
 
     <div>
         <label for="img">Imagen</label>
-        <input type="text" placeholder="Ingresa el url de la imagen" name="img" value="{{ old('img', optional($service)->img)}}">
+        <input type="text" placeholder="Ingresa el url de la imagen" name="img" value="{{ old('img', optional($service)->img)}}" id="img">
         <p>{{ $errors->first('img') }}</p>
     </div>
 

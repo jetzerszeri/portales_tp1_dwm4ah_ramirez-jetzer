@@ -12,12 +12,12 @@
     @endif
     <div>
         <label for="name">Nombre del estado</label>
-        <input type="text" placeholder="Ingresa el nombre" name="name" value="{{ old('name', optional($state)->name) }}">
+        <input type="text" placeholder="Ingresa el nombre" name="name" value="{{ old('name', optional($state)->name) }}" id="name">
         <p>{{ $errors->first('name') }}</p>
     </div>
     <div>
         <label for="abbreviation">Abreviación</label>
-        <input type="text" placeholder="Ingresa la abreviación" name="abbreviation" value="{{ old('abbreviation', optional($state)->abbreviation) }}">
+        <input type="text" placeholder="Ingresa la abreviación" name="abbreviation" value="{{ old('abbreviation', optional($state)->abbreviation) }}" id="abbreviation">
         <p>{{ $errors->first('abbreviation') }}</p>
     </div>
 

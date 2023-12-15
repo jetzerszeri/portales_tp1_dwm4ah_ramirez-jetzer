@@ -12,7 +12,7 @@
     @endif
     <div>
         <label for="name">Nombre de la categoría</label>
-        <input type="text" placeholder="Ingresa el nombre" name="name" value="{{ old('name', optional($category)->name) }}">
+        <input type="text" placeholder="Ingresa el nombre" name="name" value="{{ old('name', optional($category)->name) }}" id="name">
         <p>{{ $errors->first('name') }}</p>
     </div>
 

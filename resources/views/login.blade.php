@@ -19,13 +19,13 @@
 
         <div>
             <label for="email">E-mail</label>
-            <input type="text" placeholder="ejemplo@ejemplo.com" name="email">
+            <input type="text" placeholder="ejemplo@ejemplo.com" name="email" id="email">
             <p>{{ $errors->first('email') }}</p>
         </div>
 
         <div>
             <label for="password">Contraseña</label>
-            <input type="password" placeholder="Ingresa la contraseña" name="password">
+            <input type="password" placeholder="Ingresa la contraseña" name="password" id="password">
             <p>{{ $errors->first('password') }}</p>
         </div>
 

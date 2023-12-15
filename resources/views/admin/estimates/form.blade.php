@@ -6,8 +6,7 @@
 @extends('adminlayout')
 @section('subcontent')
 
-<!-- <form action="{{ request()->is('admin/estimates/*/edit') ? '/admin/estimates/' . optional($estimate)->id : '/admin/estimates' }}" method="post">
-<form action="/admin/estimates{{ request()->is('admin/estimates/*/edit') ? '/' . optional($estimate)->id : '?req=' . request()->query('req') }}"> -->
+
 <form action="{{ request()->is('admin/estimates/*/edit') ? '/admin/estimates/' . optional($estimate)->id : '/admin/estimates' }}" method="post">
 
     @csrf
@@ -24,13 +23,13 @@
     </div>
     <div>
         <label for="price">Precio</label>
-        <input type="number" name="price" value="{{ old('price', optional($estimate)->price) }}">
+        <input type="number" name="price" value="{{ old('price', optional($estimate)->price) }}" id="price">
         <p>{{ $errors->first('price') }}</p>
     </div>
 
     <div>
         <label for="notes">Comentarios para el cliente</label>
-        <textarea name="notes" placeholder="Ingresa las notas para el cliente...">{{ old('notes', optional($estimate)->notes) }}</textarea>
+        <textarea name="notes" placeholder="Ingresa las notas para el cliente..." id="notes">{{ old('notes', optional($estimate)->notes) }}</textarea>
         <p>{{ $errors->first('notes') }}</p>
     </div>
 
