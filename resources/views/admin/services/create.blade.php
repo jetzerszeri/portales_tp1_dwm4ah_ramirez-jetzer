@@ -19,7 +19,7 @@
         <label for="category_id">Categoría</label>
         <select name="category_id" id="category_id">
             @foreach($categoriesList as $category)
-                <option value="{{ $category->id }}" {{ old('category', optional($service)->category) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                <option value="{{ $category->id }}" {{ old('category_id', optional($service)->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
             @endforeach
         </select>
         {{ $errors->first('category_id') }}
