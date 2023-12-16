@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\Category;
 use App\Http\Requests\CreateService;
+use App\Http\Requests\UpdateService;
 
 class ServicesController extends Controller
 {
@@ -46,7 +47,7 @@ class ServicesController extends Controller
             $filename = 'img/' . time() . '.' . $request->img->extension();
             $request->img->move(public_path('img'), $filename);
         }
-        
+
         Service::create([
             'name' => $data['name'],
             'category_id' => $data['category_id'],
@@ -81,10 +82,20 @@ class ServicesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CreateService $request, Service $service)
+    public function update(UpdateService $request, Service $service)
     {
         $data = request()->all();
-        $service->update($data);
+        $service->update([
+            'name' => $data['name'],
+            'category_id' => $data['category_id'],
+            'description' => $data['description'],
+        ]);
+
+        if ($request->hasFile('img')) {
+            $filename = 'img/' . time() . '.' . $request->img->extension();
+            $request->img->move(public_path('img'), $filename);
+            $service->update(['img' => $filename]);
+        }
         return redirect('/admin/services');
     }
 
