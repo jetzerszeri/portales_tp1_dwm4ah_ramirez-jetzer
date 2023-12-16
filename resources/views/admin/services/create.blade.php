@@ -5,7 +5,7 @@
 @extends('adminlayout')
 @section('subcontent')
 
-<form action="{{ request()->is('admin/services/*/edit') ? '/admin/services/' . optional($service)->id : '/admin/services' }}" method="post">
+<form action="{{ request()->is('admin/services/*/edit') ? '/admin/services/' . optional($service)->id : '/admin/services' }}" method="post" enctype="multipart/form-data">
     @csrf
     @if(request()->is('admin/services/*/edit'))
         @method('PATCH')
@@ -31,8 +31,9 @@
     </div>
 
     <div>
-        <label for="img">Imagen</label>
-        <input type="text" placeholder="Ingresa el url de la imagen" name="img" value="{{ old('img', optional($service)->img)}}" id="img">
+        <label for="imgInput">Imagen</label>
+        <!-- <input type="text" placeholder="Ingresa el url de la imagen" name="img" value="{{ old('img', optional($service)->img)}}" id="img"> -->
+        <input type="file" name="img" id="imgInput" accept="image/*">
         <p>{{ $errors->first('img') }}</p>
     </div>
 

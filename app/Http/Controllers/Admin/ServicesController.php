@@ -40,7 +40,20 @@ class ServicesController extends Controller
     public function store(CreateService $request)
     {
         $data = request()->all();
-        Service::create($data);
+
+        $filename = '';
+        if ($request->hasFile('img')) {
+            $filename = 'img/' . time() . '.' . $request->img->extension();
+            $request->img->move(public_path('img'), $filename);
+        }
+        
+        Service::create([
+            'name' => $data['name'],
+            'category_id' => $data['category_id'],
+            'description' => $data['description'],
+            'img' => $filename,
+        ]);
+
         return redirect('/admin/services');
     }
 

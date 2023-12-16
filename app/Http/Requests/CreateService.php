@@ -26,7 +26,7 @@ class CreateService extends FormRequest
             'name' => 'required|min:3|max:100',
             'category_id' => 'required',
             'description' => 'required|min:10|max:1000',
-            'img' => 'required',
+            'img' => 'required|image',
         ];
     }
 
@@ -42,6 +42,7 @@ class CreateService extends FormRequest
             'description.min' => 'La descripción debe tener al menos :min caracteres.',
             'description.max' => 'La descripción no debe tener más de :max caracteres.',
             'img.required' => 'El campo imagen es obligatorio.',
+            'img.image' => 'Debes adjunttar una imagen válida.',
         ];
     }
 }

@@ -989,6 +989,9 @@ input + p, select + p, textarea + p{
 }
 
 
+#imgInput{
+    color: var(--color-darkgreen);
+}
 
 @media (min-width: 650px){
 
