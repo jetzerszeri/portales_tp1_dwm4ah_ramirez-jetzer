@@ -15,7 +15,11 @@
             @foreach ($services as $service)
                 <tr>
                     <td>{{ $service->name}}</td>
-                    <td>{{ $service->category->name }}</td>
+                    <td>
+                        @if ($service->category)
+                        {{ $service->category->name }}
+                        @endif
+                    </td>
                     <td>{{ $service->description}}</td>
                     <td>{{ $service->img}}</td>
                     <td>

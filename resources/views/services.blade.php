@@ -33,7 +33,9 @@
                     <div>
                         <div>
                             <h2>{{ $service->name}}</h2>
+                            @if ($service->category)
                             <p>{{ $service->category->name }}</p>
+                            @endif
                         </div>
                         
                         <a href="/services/{{ $service->id}}" class="btn secundary-green">Ver detalles</a>
