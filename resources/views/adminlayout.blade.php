@@ -10,6 +10,8 @@
             'categories' => 'Categorías',
             'requests' => 'Solicitudes',
             'states' => 'Estados',
+            'estimates' => 'Estimados',
+            'statistics' => 'Estadísticas',
         ];
         $currentEntityName = $entitiesMap[$entity] ?? 'Dashboard';
     @endphp
@@ -27,10 +29,12 @@
     <h1>Panel de administrador</h1>
     <h2>{{$h2}}</h2>
 
+    @if($currentEntityName !== 'Estadísticas')
     <ul class="usersOptions">
         <li><a href="/admin/{{$entity}}" class="btn">Mostrar todos</a></li>
-        <li><a href="/admin/{{$entity}}/create" class="btn">Agregar uno</a></li>
+        <li><a href="/admin/{{$entity}}/create" class="btn">Agregar</a></li>
     </ul>
+    @endif
 
     @yield('subcontent')
 

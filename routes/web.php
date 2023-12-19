@@ -35,3 +35,4 @@ Route::resource('admin/estimates', EstimatesController::class)->middleware('auth
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/admin', [AuthController::class, 'admin'])->middleware('auth');
+Route::get('/admin/statistics', [AdminServicesController::class, 'statistics'])->middleware('auth');

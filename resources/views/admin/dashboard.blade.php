@@ -30,6 +30,9 @@
         <li>
             <a href="/admin/states"><i class="fa-solid fa-map-location-dot"></i><span>Estados</span></a>
         </li>
+        <li>
+            <a href="/admin/statistics"><i class="fa-solid fa-chart-pie"></i><span>Estadísticas</span></a>
+        </li>
     </ul>
 
     

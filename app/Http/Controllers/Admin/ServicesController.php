@@ -107,4 +107,61 @@ class ServicesController extends Controller
         $service->delete();
         return redirect('/admin/services');
     }
+
+    public function statistics()
+    {
+        $weekAgo = now()->subWeek();
+        $weekStartDate = $weekAgo->startOfDay();
+        $weekEndDate = now()->endOfDay();
+        
+        $mostRequestedServiceLastWeek = Service::withCount(['requests' => function ($query) use ($weekStartDate, $weekEndDate) {
+            $query->whereBetween('created_at', [$weekStartDate, $weekEndDate]);
+        }])
+        ->orderByDesc('requests_count')
+        ->first(['name', 'requests_count']);
+        
+        $mostRequestedServiceLastWeekInfo = [
+            'service' => $mostRequestedServiceLastWeek,
+            'date_range' => $weekStartDate->toDateString() . ' - ' . $weekEndDate->toDateString(),
+            'requests_count' => $mostRequestedServiceLastWeek ? $mostRequestedServiceLastWeek->requests_count : 0
+        ];
+        
+        
+        $monthAgo = now()->subMonth();
+        $monthStartDate = $monthAgo->startOfDay();
+        $monthEndDate = now()->endOfDay();
+        
+        $mostRequestedServiceLastMonth = Service::withCount(['requests' => function ($query) use ($monthStartDate, $monthEndDate) {
+            $query->whereBetween('created_at', [$monthStartDate, $monthEndDate]);
+        }])
+        ->orderByDesc('requests_count')
+        ->first(['name', 'requests_count']);
+        
+        $mostRequestedServiceLastMonthInfo = [
+            'service' => $mostRequestedServiceLastMonth,
+            'date_range' => $monthStartDate->toDateString() . ' - ' . $monthEndDate->toDateString(),
+            'requests_count' => $mostRequestedServiceLastMonth ? $mostRequestedServiceLastMonth->requests_count : 0
+        ];
+
+        
+        
+        $mostRequestedServiceAllTime = Service::withCount('requests')
+        ->orderByDesc('requests_count')
+        ->first(['name', 'requests_count']);
+        
+        $mostRequestedServiceAllTimeInfo = [
+            'service' => $mostRequestedServiceAllTime,
+            'date_range' => 'Desde siempre',
+            'requests_count' => $mostRequestedServiceAllTime ? $mostRequestedServiceAllTime->requests_count : 0
+        ];
+        
+        
+
+        return view('admin.statistics', [
+            'h2' => 'Estadísticas',
+            'mostRequestedServiceLastWeek' => $mostRequestedServiceLastWeekInfo,
+            'mostRequestedServiceLastMonth' => $mostRequestedServiceLastMonthInfo,
+            'mostRequestedServiceAllTime' => $mostRequestedServiceAllTimeInfo,
+        ]);
+    }
 }
