@@ -11,7 +11,7 @@
 
     <h1>Iniciar sesión</h1>
 
-    <form action="" method="post">
+    <form method="post">
         @csrf
 
         
