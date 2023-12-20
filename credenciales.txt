@@ -1,0 +1,4 @@
+Credenciales del admin:
+
+admin@gbygpcs.com
+password: 123456
